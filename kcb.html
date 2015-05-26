@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			td{
+				border: solid 1px #000000;
+				font-size: 12px;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">课程表</h1>
+		</header>
+		<div class="mui-content">
+			
+		</div>
+		<script>
+			mui.plusReady(function() {
+				var cookie = plus.storage.getItem('cookie');
+				var num = plus.storage.getItem('num');
+				
+				mui.get('http://1.xhuxm.sinaapp.com/jwxt.php?c=kbcx', {
+						num: num,
+						cookie: cookie
+					},
+					function(data) {
+						document.querySelector('.mui-content').innerHTML = data;
+				});
+			});
+		</script>
+	</body>
+
+</html>
