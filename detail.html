@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			body {
+				background-color: #efeff4;
+			}
+			#bookIntro,
+			#bookPos{
+				margin: 8px 10px;
+				background-color: #FFFFFF;
+			}
+			#bookIntro dd{
+				margin: 0;
+				padding: 8px;
+			}
+			#bookPos img,
+			#bookPos div{
+				display: none;
+			}
+			#bookPos td{
+				border: solid 1px #D8D8D8;
+				width: auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+			<div id="bookIntro">
+				
+			</div>
+			<table id="bookPos">
+
+			</table>
+		</div>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			
+			var booksPos, bookIntro;
+			window.addEventListener('showDetail', function(event) {
+				//获得事件参数
+				var marc_no = event.detail.marc_no;
+				var title = event.detail.title.split('.')[1];
+				document.getElementById('title').innerText = title;
+				//根据id向服务器请求书籍详情
+				mui.getJSON('http://1.xhuxm.sinaapp.com/library.php?c=detail', {
+					marc_no: marc_no
+				}, function(data) {
+					
+					bookIntro = document.getElementById('bookIntro');
+					bookIntro.innerHTML = data.bookIntro;
+					booksPos = document.getElementById('bookPos');
+					var booksPosLen = data.bookPos.length;
+					for (var i = 0; i < booksPosLen; i++) {
+						var tr = document.createElement('tr');
+						tr.innerHTML = data.bookPos[i];
+						booksPos.appendChild(tr);
+					}
+				});
+			});
+			
+			var old_back = mui.back;
+			mui.back = function() {
+				bookIntro.innerHTML='';
+				booksPos.innerHTML ='';
+				old_back();
+			}
+		</script>
+	</body>
+
+</html>

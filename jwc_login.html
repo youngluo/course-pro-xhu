@@ -8,7 +8,10 @@
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
-			* {
+			body{
+				background-color: #efeff4;
+			}
+			ul{
 				margin: 0;
 				padding: 0;
 			}
@@ -102,9 +105,8 @@
 							},
 							error: function(xhr, type, error) {
 								if(type == 'timeout'){
-									mui.toast('网络不给力啊');
 									plus.nativeUI.closeWaiting();
-									
+									mui.toast('网络不给力啊');
 								}
 							}
 						});

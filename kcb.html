@@ -8,9 +8,13 @@
 		<script src="js/mui.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
-			td{
-				border: solid 1px #000000;
+			td {
+				border: solid 1px #F6F6F6;
 				font-size: 12px;
+				text-align: center;
+			}
+			#kcb {
+				padding: 5px;
 			}
 		</style>
 		<script type="text/javascript" charset="utf-8">
@@ -22,23 +26,46 @@
 		<header class="mui-bar mui-bar-nav">
 			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 id="title" class="mui-title">课程表</h1>
+			<a id="refresh" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">刷新</a>
 		</header>
-		<div class="mui-content">
-			
+		<div class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="kcb">
+				</div>
+			</div>
 		</div>
 		<script>
+			mui('.mui-scroll-wrapper').scroll();
+			var cookie, num;
 			mui.plusReady(function() {
-				var cookie = plus.storage.getItem('cookie');
-				var num = plus.storage.getItem('num');
-				
+				cookie = plus.storage.getItem('cookie');
+				num = plus.storage.getItem('num');
+				getSyllabus();
+			});
+			document.getElementById('refresh').addEventListener('tap', function() {
+				plus.nativeUI.showWaiting();
+				getSyllabus(function() {
+					plus.nativeUI.closeWaiting();
+				});
+			}, false);
+
+			function getSyllabus(callback) {
 				mui.get('http://1.xhuxm.sinaapp.com/jwxt.php?c=kbcx', {
 						num: num,
 						cookie: cookie
 					},
 					function(data) {
-						document.querySelector('.mui-content').innerHTML = data;
-				});
-			});
+						if (typeof callback == 'function') {
+							callback();
+						}
+						if (data) {
+							alert(data);
+							document.getElementById('kcb').innerHTML = data;
+						} else {
+							mui.toast('网络错误');
+						}
+					});
+			}
 		</script>
 	</body>
 
