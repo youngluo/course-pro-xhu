@@ -68,9 +68,7 @@
         "Storage": {
             "description": "管理应用本地数据"
         },
-        "UI": {
-            "description": "管理系统原生控件"
-        },
+        "UI": {},
         "Uploader": {
             "description": "管理文件上传任务"
         },
@@ -103,7 +101,7 @@
         },
         "Statistic": {
             "description": "管理统计插件"
-        }
+        },"Webview":{},"NativeUI":{},"Navigator":{}
     },
     "plus": {
         "splashscreen": {
@@ -198,5 +196,48 @@
                 }
             }
         }
-    }
+    },
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"library.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/iconfont.css",
+					"css/mui.min.css",
+					"fonts/iconfont.ttf",
+					"js/zepto.min.js"
+				],
+				"refer": [
+					"jwc_login.html",
+					"setting.html"
+				],
+				"priority": 0
+			},
+			"library.html": {
+				"resources": [],
+				"refer": [
+					"detail.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"server/request.php",
+				"server/lib/simple_html_dom.php",
+				"jwc_page.html",
+				"kcb.html",
+				"server/api.php",
+				"server/logic.php",
+				"js/mui.js",
+				"server/demo.php",
+				"css/mui.css",
+				"server/index.php",
+				"README.md",
+				"server/cookie.txt"
+			]
+		}
+	}
 }
