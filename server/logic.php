@@ -19,13 +19,14 @@ class Logic {
 		}
 
 		$result = $this -> request -> get_captcha();
-
-		$img_name = 'temp/captcha.jpg';
-		$fp = fopen($img_name, 'a');
-		fwrite($fp, $result);
-		fclose($fp);
-
-		return $img_name;
+		
+		if($result){
+			$img_name = 'temp/captcha.jpg';
+			$fp = fopen($img_name, 'a');
+			fwrite($fp, $result);
+			fclose($fp);
+			return $img_name;
+		}
 	}
 
 	function login($user, $psw, $captcha) {

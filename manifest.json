@@ -212,7 +212,8 @@
 				],
 				"refer": [
 					"jwc_login.html",
-					"setting.html"
+					"setting.html",
+					"main.html"
 				],
 				"priority": 0
 			},
@@ -221,6 +222,17 @@
 				"refer": [
 					"detail.html"
 				],
+				"priority": 0
+			},
+			"main.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/main.js",
+					"js/zepto.min.js"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

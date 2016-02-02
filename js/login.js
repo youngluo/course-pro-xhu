@@ -1,14 +1,12 @@
 (function(M, $) {
 
 	var Login = function() {
-			this.host = 'http://192.168.0.148:9096/';
+			this.host = 'http://192.168.0.110:9096/';
 		},
 		loginFn = Login.prototype;
 
 	loginFn.init = function() {
-		M.init({
-			statusBarBackground: '#f7f7f7'
-		});
+		M.init();
 
 		//填充学号、密码
 		var account = plus.storage.getItem('account'),
@@ -60,11 +58,21 @@
 			timeout: '15000', //15s
 			success: function(res) {
 				plus.nativeUI.closeWaiting();
-				M.toast(res.msg);
+				M.toast(res.data.msg);
 				if (res.status == 'success') {
 					plus.storage.setItem('account', account);
 					_this.rememberPassword();
-
+					M.openWindow({
+						url: 'main.html',
+						id: 'main',
+						styles: {
+							top: 0,
+							bottom: 0
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
 				} else if (res.status == 'error') {
 					setTimeout(function() {
 						_this.getCaptcha();
