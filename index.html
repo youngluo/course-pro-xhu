@@ -6,7 +6,6 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
 		<style>
 			.mui-input-group {
 				margin-top: 10px;
@@ -29,10 +28,23 @@
 				width: 40%;
 			}
 			
-			#captcha img {
-				float: right;
+			#captcha > div {
+				float: left;
+				width: 107px;
 				height: 100%;
-				margin-right: 5px;
+			}
+			
+			#captcha > div img {
+				display: none;
+				height: 100%;
+			}
+			
+			.mui-loading {
+				display: none;
+			}
+			
+			.mui-loading .mui-spinner {
+				margin-top: 8px;
 			}
 			
 			.mui-content-padded {
@@ -63,15 +75,20 @@
 				<div id='captcha' class="mui-input-row">
 					<label>验证码</label>
 					<input type="text" class="mui-input-clear mui-input" placeholder="请输入验证码">
-					<img src="">
+					<div>
+						<img src="" />
+						<div class="mui-loading">
+							<span class="mui-spinner"></span>
+						</div>
+					</div>
 				</div>
 			</form>
 
 			<form class="mui-input-group">
 				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						保存密码
-						<div id="autoLogin" class="mui-switch">
+					<li id="rememberPsw" class="mui-table-view-cell">
+						记住密码
+						<div class="mui-switch">
 							<div class="mui-switch-handle"></div>
 						</div>
 					</li>
@@ -81,51 +98,10 @@
 				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
 			</div>
 		</div>
+
 		<script src="js/mui.min.js"></script>
 		<script src="js/zepto.min.js"></script>
-		<script>
-			(function(M, $) {
-				M.init({
-					statusBarBackground: '#f7f7f7'
-				});
-				M.get('http://192.168.0.148:9096/', function(res) {
-					if (res) {
-						$('#captcha img').attr('src', res);
-					}
-				});
-				M('#captcha').on('tap', 'img', function() {
-					M.get('http://192.168.0.148:9096/', function(res) {
-						if (res) {
-							$('#captcha img').attr('src', res + '?' + new Date());
-						}
-					});
-				});
-				M('.mui-content-padded').on('tap', '#login', function() {
-					$.post('http://192.168.0.148:9096/index.php?c=login', {
-						user: $.trim($('#account').val()),
-						psw: $.trim($('#password').val()),
-						captcha: $.trim($('#captcha input').val())
-					}, function(res) {
-						if (res) {
-							alert(res)
-						}
-					});
-				});
-				var backButtonPress = 0;
-				M.back = function(event) {
-					backButtonPress++;
-					if (backButtonPress > 1) {
-						plus.runtime.quit();
-					} else {
-						plus.nativeUI.toast('再按一次退出应用');
-					}
-					setTimeout(function() {
-						backButtonPress = 0;
-					}, 1000);
-					return false;
-				};
-			}(mui, Zepto));
-		</script>
+		<script src="js/login.js"></script>
 	</body>
 
 </html>

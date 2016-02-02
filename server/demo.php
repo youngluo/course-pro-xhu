@@ -3,16 +3,16 @@
 class JWXT {
 	
 	/*
-	 * $url£º×¥È¡ÍøÒ³µÄÁ´½Ó
-	 * $post_data£ºÄ£ÄâpostÌá½»µÄÐÅÏ¢
-	 * $cookie£º´«ÈëµÄcookieÖµ
-	 * $isHeader£ºÊÇ·ñÊä³öÍ·ÎÄ¼þÐÅÏ¢
+	 * $urlï¿½ï¿½×¥È¡ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * $post_dataï¿½ï¿½Ä£ï¿½ï¿½postï¿½á½»ï¿½ï¿½ï¿½ï¿½Ï¢
+	 * $cookieï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½cookieÖµ
+	 * $isHeaderï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½ï¿½ï¿½Ï¢
 	 */
 	
 	function curl_request($url,$post_data='',$cookie='',$isHeader=0) {
-		//³õÊ¼»¯
+		//ï¿½ï¿½Ê¼ï¿½ï¿½
 		$curl = curl_init();
-		//ÉèÖÃ×¥È¡µÄurl
+		//ï¿½ï¿½ï¿½ï¿½×¥È¡ï¿½ï¿½url
 		curl_setopt($curl, CURLOPT_URL, $url);
 		
 		curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)');
@@ -21,24 +21,24 @@ class JWXT {
         curl_setopt($curl, CURLOPT_REFERER, 'http://jwc.xhu.edu.cn');
 		
 		if($post_data){
-			//ÉèÖÃpost·½Ê½Ìá½»
+			//ï¿½ï¿½ï¿½ï¿½postï¿½ï¿½Ê½ï¿½á½»
 			curl_setopt($curl, CURLOPT_POST, 1);
-			//ÉèÖÃpostÊý¾Ý
+			//ï¿½ï¿½ï¿½ï¿½postï¿½ï¿½ï¿½
 			curl_setopt($curl, CURLOPT_POSTFIELDS,http_build_query($post_data,'','&'));
 		}
 		if($cookie){
             curl_setopt($curl, CURLOPT_COOKIE, $cookie);
         }
 		
-		//ÉèÖÃÍ·ÎÄ¼þµÄÐÅÏ¢×÷ÎªÊý¾ÝÁ÷Êä³ö
+		//ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		curl_setopt($curl, CURLOPT_HEADER, $isHeader);
         curl_setopt($curl, CURLOPT_TIMEOUT, 20);
-        //ÉèÖÃ»ñÈ¡µÄÐÅÏ¢ÒÔÎÄ¼þÁ÷µÄÐÎÊ½·µ»Ø£¬¶ø²»ÊÇÖ±½ÓÊä³ö¡£
+        //ï¿½ï¿½ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		
-		//Ö´ÐÐÃüÁî
+		//Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		$data = curl_exec($curl);
-		
+		//echo mb_convert_encoding($data, 'utf-8', 'GBK,UTF-8,ASCII');
         if($isHeader){
             
             $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
@@ -53,14 +53,14 @@ class JWXT {
 			
 			$filter_res = array_filter($hint);
 			
-			if(!empty($filter_res)){ //Êý×é²»Îª¿ÕµÄ²Ù×÷
+			if(!empty($filter_res)){ //ï¿½ï¿½ï¿½é²»Îªï¿½ÕµÄ²ï¿½ï¿½ï¿½
 				$arr = array(
 					'cookie' => $cookie[1][0],
 					'res' => $this -> filter($hint[1][0])
 				);
 			    
 			}
-			else{ //Êý×éÎª¿ÕµÄ²Ù×÷
+			else{ //ï¿½ï¿½ï¿½ï¿½Îªï¿½ÕµÄ²ï¿½ï¿½ï¿½
 				$arr = array(
 					'cookie' => $cookie[1][0],
 					'res' => 1
@@ -73,25 +73,25 @@ class JWXT {
             return mb_convert_encoding($data, 'utf-8', 'GBK,UTF-8,ASCII');
         }
         
-		//¹Ø±ÕURLÇëÇó
+		//ï¿½Ø±ï¿½URLï¿½ï¿½ï¿½ï¿½
 		curl_close($curl);
 	}
     
     function filter($str){
 		
-		//×ª»» GB2312 -> UTF-8
+		//×ªï¿½ï¿½ GB2312 -> UTF-8
 		$str = mb_convert_encoding($str, 'UTF-8', 'GB2312');
 		
 		preg_match_all('/[\x{4e00}-\x{9fff}]+/u', $str, $matches);
 		$str = join('', $matches[0]);
 		
-		//×ª»» UTF-8 -> GB2312
+		//×ªï¿½ï¿½ UTF-8 -> GB2312
 		$str = mb_convert_encoding($str, 'GB2312', 'UTF-8'); 
 		
 		if(strlen($str) == 8){
-			return 0;//ÃÜÂë´íÎó
+			return 0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}else{
-			return -1;//ÓÃ»§Ãû´íÎó
+			return -1;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 	}
 
@@ -111,14 +111,14 @@ class JWXT {
         
 		$post_data = array(
 			"__VIEWSTATE" => $this -> getView($url), 
-			"txtUserName" => $_POST['num'], 
-			"TextBox2" => $_POST['psw'], 
+			"txtUserName" => $_GET['num'], 
+			"TextBox2" => $_GET['psw'], 
 			"txtSecretCode" => '',
         	"lbLanguage" => '',
        		"hidPdrs" => '',
         	"hidsc" => '',
         	"Button1" => '',
-			"RadioButtonList1" => iconv('utf-8', 'gb2312', 'Ñ§Éú')
+			"RadioButtonList1" => iconv('utf-8', 'gb2312', 'å­¦ç”Ÿ')
 		);
 		
 		$result = $this->curl_request( $url, $post_data,'',1);
@@ -131,7 +131,7 @@ class JWXT {
 		$result =  $this->curl_request('http://jwc.xhu.edu.cn/xskbcx.aspx?xh='.$_GET['num'], '', $_GET['cookie']);
         preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/',$result,$out);
         
-        echo str_replace("ÐÇÆÚ","ÖÜ",$out[0][0]);
+        echo str_replace("ï¿½ï¿½ï¿½ï¿½","ï¿½ï¿½",$out[0][0]);
 	}
     
    function jdcx(){
@@ -140,7 +140,7 @@ class JWXT {
         
         $post_data = array(
             "__VIEWSTATE" => $this -> getView($url,$_GET['cookie']),
-            "btn_zg" => '¿Î³Ì×î¸ß³É¼¨',
+            "btn_zg" => 'ï¿½Î³ï¿½ï¿½ï¿½ß³É¼ï¿½',
             "ddXN" => '',
             "ddXQ" => '',
             "ddl_kcxz" => ''
@@ -161,7 +161,7 @@ class JWXT {
        
         $str = mb_convert_encoding($str, 'utf-8', 'GBK,UTF-8,ASCII');
 
-		//Í³¼ÆÒÑÐÞÑ§·Ö
+		//Í³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½
 		$sum = 0;
 		foreach ($score[0] as $value) {
 			$sum += floatval($value);

@@ -207,7 +207,8 @@
 					"css/iconfont.css",
 					"css/mui.min.css",
 					"fonts/iconfont.ttf",
-					"js/zepto.min.js"
+					"js/zepto.min.js",
+					"js/login.js"
 				],
 				"refer": [
 					"jwc_login.html",
