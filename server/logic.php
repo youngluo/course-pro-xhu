@@ -19,8 +19,8 @@ class Logic {
 		}
 
 		$result = $this -> request -> get_captcha();
-		
-		if($result){
+
+		if ($result) {
 			$img_name = 'temp/captcha.jpg';
 			$fp = fopen($img_name, 'a');
 			fwrite($fp, $result);
@@ -31,8 +31,13 @@ class Logic {
 
 	function login($user, $psw, $captcha) {
 		$post_data = array("__VIEWSTATE" => $this -> request -> get_viewstate(), "txtUserName" => $user, "TextBox2" => $psw, "txtSecretCode" => $captcha, "RadioButtonList1" => iconv('utf-8', 'gb2312', '学生'), "Button1" => '', "lbLanguage" => '', "hidPdrs" => '', "hidsc" => '');
-
 		return $this -> request -> curl('', $post_data);
+	}
+
+	function get_timetable($user, $name) {
+		$name = urlencode(iconv('utf-8', 'gb2312', $name));
+		$url = 'http://jwc.xhu.edu.cn/xskbcx.aspx?gnmkdm=N121603&xm=' . $name . '&xh=' . $user;
+		return $this -> request -> curl($url);
 	}
 
 }

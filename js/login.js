@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var Login = function() {
-			this.host = 'http://192.168.0.110:9096/';
+			this.host = Config.host;
 		},
 		loginFn = Login.prototype;
 
@@ -9,10 +9,10 @@
 		M.init();
 
 		//填充学号、密码
-		var account = plus.storage.getItem('account'),
+		var user = plus.storage.getItem('user'),
 			psw = plus.storage.getItem('password');
 
-		account && $('#account').val(account);
+		user && $('#account').val(user);
 		psw && $('#password').val(psw);
 
 		//获取验证码及cookie
@@ -34,22 +34,22 @@
 		M.get(_this.host, function(res) {
 			if (res) {
 				loading.hide();
-				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
+				captcha.attr('src', _this.host + '/' + res + '?' + (+new Date())).show();
 			}
 		});
 	}
 
 	loginFn.submit = function() {
 		var _this = this,
-			account = $.trim($('#account').val()),
+			user = $.trim($('#account').val()),
 			psw = $.trim($('#password').val()),
 			captcha = $.trim($('#captcha input').val());
 
 		plus.nativeUI.showWaiting();
 
-		M.ajax(_this.host + 'index.php?c=login', {
+		M.ajax(_this.host + '/index.php?c=login', {
 			data: {
-				user: account,
+				user: user,
 				psw: psw,
 				captcha: captcha
 			},
@@ -60,7 +60,8 @@
 				plus.nativeUI.closeWaiting();
 				M.toast(res.data.msg);
 				if (res.status == 'success') {
-					plus.storage.setItem('account', account);
+					plus.storage.setItem('user', user);
+					plus.storage.setItem('name', res.data.name);
 					_this.rememberPassword();
 					M.openWindow({
 						url: 'main.html',

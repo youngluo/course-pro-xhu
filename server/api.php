@@ -1,6 +1,7 @@
 <?php
 
 require_once 'logic.php';
+require_once 'lib/simple_html_dom.php';
 
 class API {
 
@@ -29,7 +30,7 @@ class API {
 			preg_match_all('/<span id="xhxm">(.*?)<\/span>/', $result, $matches);
 			$name = $matches[1][0];
 			$response['status'] = 'success';
-			$response['data']['user'] = $name;
+			$response['data']['name'] = str_replace('同学', '', $name);
 			$response['data']['msg'] = $name . '，登录成功';
 
 		} else {
@@ -45,8 +46,29 @@ class API {
 	}
 
 	function getTimetable() {
-		$url = 'http://jwc.xhu.edu.cn/xskbcx.aspx?gnmkdm=N121603&xh=' + $_GET['user'] + '&xm=' + $_GET['name'];
+		$result = $this -> logic -> get_timetable($_GET['user'], $_GET['name']);
+		$response = array('status' => '', 'data' => array());
+
+		/*$html = new simple_html_dom();
+		$html -> load($result);
+
+		foreach ($html -> find('#Table1 tr') as $tr_index => $tr) {
+			if ($tr_index > 1) {
+				($tr_index + 2) % 4 == 0 ? $td_start_index = 1 : $td_start_index = 0;
+				foreach ($tr -> find('td') as $td_index => $td) {
+					if ($td_index > $td_start_index) {
+						$td_content = $td -> innertext;
+						$response['data'][$tr_index - 1]['周' . ($td_index - $td_start_index)] = $td_content;
+					}
+				}
+			}
+		}*/
+		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/',$result,$timetable);
+
+		$response['status'] = 'success';
+		$response['data']['msg'] = $result;
 		
+		 echo str_replace("星期","周",$timetable[0][0]);
 	}
 
 }
