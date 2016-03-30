@@ -1,0 +1,26 @@
+{
+	"index.html": {
+		"resources": [
+			"js/common.js",
+			"js/mui.min.js",
+			"js/zepto.min.js",
+			"js/login.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"img/logo.png"
+		],
+		"refer": [
+			"main.html"
+		]
+	},
+	"main.html": {
+		"resources": [
+			"js/main.js",
+			"img/logo.png",
+			"js/common.js",
+			"js/mui.min.js",
+			"js/zepto.min.js",
+			"css/mui.min.css"
+		]
+	}
+}

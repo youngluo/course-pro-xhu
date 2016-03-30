@@ -67,8 +67,8 @@ class API {
 
 		$response['status'] = 'success';
 		$response['data']['msg'] = $result;
-		
-		 echo str_replace("星期","周",$timetable[0][0]);
+
+		echo str_replace("星期","周",$timetable[0][0]);
 	}
 
 }

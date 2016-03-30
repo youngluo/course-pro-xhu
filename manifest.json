@@ -209,7 +209,8 @@
 					"fonts/iconfont.ttf",
 					"js/zepto.min.js",
 					"js/login.js",
-					"js/common.js"
+					"js/common.js",
+					"img/logo.png"
 				],
 				"refer": [
 					"jwc_login.html",
@@ -232,7 +233,8 @@
 					"css/mui.min.css",
 					"js/main.js",
 					"js/zepto.min.js",
-					"js/common.js"
+					"js/common.js",
+					"img/logo.png"
 				],
 				"refer": [],
 				"priority": 0

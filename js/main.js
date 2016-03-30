@@ -3,7 +3,7 @@
 
 		M('#main').on('tap', 'button', function() {
 			plus.nativeUI.showWaiting();
-			M.ajax(Config.host + '/?c=getTimetable', {
+			M.ajax(Config.host + '?c=getTimetable', {
 				data: {
 					user: plus.storage.getItem('user'),
 					name: plus.storage.getItem('name')
@@ -12,8 +12,7 @@
 				timeout: '15000', //15s
 				success: function(res) {
 					plus.nativeUI.closeWaiting();
-					//
-					
+					alert(res);
 				},
 				error: function(xhr, type, error) {
 					plus.nativeUI.closeWaiting();

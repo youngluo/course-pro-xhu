@@ -34,7 +34,7 @@
 		M.get(_this.host, function(res) {
 			if (res) {
 				loading.hide();
-				captcha.attr('src', _this.host + '/' + res + '?' + (+new Date())).show();
+				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
 			}
 		});
 	}
@@ -47,7 +47,7 @@
 
 		plus.nativeUI.showWaiting();
 
-		M.ajax(_this.host + '/index.php?c=login', {
+		M.ajax(_this.host + 'index.php?c=login', {
 			data: {
 				user: user,
 				psw: psw,
