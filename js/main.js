@@ -1,4 +1,12 @@
 (function(M, $) {
+
+	var padding = ($(window).height() - $('#main').height()) / 8;
+
+	$('.mui-table-view.mui-grid-view .mui-table-view-cell').css({
+		paddingTop: padding,
+		paddingBottom: padding
+	});
+
 	M.plusReady(function() {
 
 		M('#main').on('tap', 'button', function() {
