@@ -236,6 +236,20 @@
 					"js/common.js",
 					"img/logo.png"
 				],
+				"refer": [
+					"timetable.html"
+				],
+				"priority": 0
+			},
+			"timetable.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/timetable.js",
+					"js/zepto.min.js",
+					"js/common.js"
+				],
 				"refer": [],
 				"priority": 0
 			}
