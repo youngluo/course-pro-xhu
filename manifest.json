@@ -1,7 +1,7 @@
 {
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H5EE80DCB",/*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name": "xhu_1.1.0",/*应用名称，程序桌面图标名称*/
+    "name": "CoursePro_xhu",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "1.1.0",/*应用版本名称*/
         "code": "83"
@@ -237,7 +237,8 @@
 					"img/logo.png"
 				],
 				"refer": [
-					"timetable.html"
+					"timetable.html",
+					"parent.html"
 				],
 				"priority": 0
 			},
@@ -249,6 +250,17 @@
 					"js/timetable.js",
 					"js/zepto.min.js",
 					"js/common.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"parent.html": {
+				"resources": [
+					"js/common.js",
+					"js/mui.min.js",
+					"js/zepto.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0

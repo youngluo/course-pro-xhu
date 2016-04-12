@@ -24,7 +24,8 @@
 			"fonts/mui.ttf"
 		],
 		"refer": [
-			"timetable.html"
+			"timetable.html",
+			"parent.html"
 		]
 	},
 	"timetable.html": {
@@ -35,6 +36,15 @@
 			"js/timetable.js",
 			"js/zepto.min.js",
 			"js/common.js"
+		]
+	},
+	"parent.html": {
+		"resources": [
+			"js/common.js",
+			"js/mui.min.js",
+			"js/zepto.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		]
 	}
 }

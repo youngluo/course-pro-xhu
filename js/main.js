@@ -7,12 +7,30 @@
 		paddingBottom: padding
 	});
 
+	M.init({
+		preloadPages: [{
+			id: 'parent',
+			url: 'parent.html'
+		}]
+	});
+
 	M.plusReady(function() {
+
+		var parentPage = null;
+
 		M('#main').on('tap', 'li', function(e) {
-			var pageName = this.id;
+			var title = $(this).find('div').text();
+
+			if (!parentPage) {
+				parentPage = plus.webview.getWebviewById('parent');
+			}
+
+			M.fire(parentPage, 'getTitle', {
+				title: title
+			});
+
 			M.openWindow({
-				url: pageName + '.html',
-				id: pageName,
+				id: 'parent',
 				styles: {
 					top: 0,
 					bottom: 0
