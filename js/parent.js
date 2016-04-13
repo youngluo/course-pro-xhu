@@ -18,9 +18,13 @@
 		win.addEventListener('getTitle', function(e) {
 			$('#title').text(e.detail.title);
 			var targetPage = e.detail.id;
-			plus.webview.show(targetPage);
-			plus.webview.hide(activePage);
-			activePage = targetPage;
+			if(targetPage != activePage){
+				console.log(activePage);
+				
+				plus.webview.hide(activePage);
+				plus.webview.show(targetPage);
+				activePage = targetPage;
+			}
 		});
 	});
 
