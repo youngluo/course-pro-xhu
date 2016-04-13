@@ -7,31 +7,55 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
+			ul {
+				display: -webkit-flex;
+				display: flex;
+				margin: 0;
+				padding: 0;
+				box-shadow: 1px 1px 1px #ccc;
+			}
+			
+			li {
+				box-sizing: border-box;
+				flex: 1;
+				height: 30px;
+				line-height: 30px;
+				list-style: none;
+				border-left: solid 1px #fff;
+				text-align: center;
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			
 			td {
 				border: solid 1px #F6F6F6;
 				font-size: 12px;
 				text-align: center;
 			}
-			#kcb {
-				padding: 5px;
-			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 id="title" class="mui-title">课程表</h1>
-		</header>
-		<div class="mui-content mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div id="timetable">
+		<div class="mui-content">
+			<ul>
+				<li>时间</li>
+				<li>周一</li>
+				<li>周二</li>
+				<li>周三</li>
+				<li>周四</li>
+				<li>周五</li>
+				<li>周六</li>
+				<li>周日</li>
+			</ul>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<table id="timetable"></table>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/zepto.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
 		<script src="js/timetable.js"></script>
 	</body>
 

@@ -4,8 +4,16 @@
 		M('.mui-scroll-wrapper').scroll();
 
 		H.getData('Timetable', function(res) {
-			$('#timetable').html(res);
+			alert(res);
+			res = JSON.parse(res);
+			if (res.status == 'success') {
+				var timetable = res.data.msg;
+				//
+			}
+
+
+			//$('#timetable').html(res);
 		});
 	});
-
+	
 }(mui, Zepto));

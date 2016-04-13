@@ -45,30 +45,59 @@ class API {
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
-	function getTimetable() {
-		$result = $this -> logic -> get_timetable($_GET['user'], $_GET['name']);
-		$response = array('status' => '', 'data' => array());
-
-		/*$html = new simple_html_dom();
-		$html -> load($result);
-
-		foreach ($html -> find('#Table1 tr') as $tr_index => $tr) {
-			if ($tr_index > 1) {
-				($tr_index + 2) % 4 == 0 ? $td_start_index = 1 : $td_start_index = 0;
-				foreach ($tr -> find('td') as $td_index => $td) {
-					if ($td_index > $td_start_index) {
-						$td_content = $td -> innertext;
-						$response['data'][$tr_index - 1]['周' . ($td_index - $td_start_index)] = $td_content;
+	//将课表转换成数组形式
+	private function converttoTable($table) {
+		$list = array('mon' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'tues' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'wed' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'thur' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'fri' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'sat' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'sun' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''));
+		$week = array("mon" => "周一", "tues" => "周二", "wed" => "周三", "thur" => "周四", "fri" => "周五", "sat" => "周六", "sun" => "周日");
+		$order = array('1,2', '3,4', '5,6', '7,8', '9,10,11');
+		foreach ($table as $key => $value) {
+			$class = $value;
+			foreach ($week as $key => $weekDay) {
+				$pos = strpos($class, $weekDay);
+				// echo $pos;
+				if ($pos) {
+					$weekArrayDay = $key;
+					//获取list数组中的第一维key
+					foreach ($order as $key => $orderClass) {
+						$pos = strpos($class, $orderClass);
+						if ($pos) {
+							$weekArrayOrder = $orderClass;
+							//获取该课程是第几节
+							break;
+						}
 					}
+					break;
 				}
 			}
-		}*/
-		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/',$result,$timetable);
+			$list[$weekArrayDay][$weekArrayOrder] = $class;
+		}
+		return $list;
+	}
+
+	function getTimetable() {
+		$result = $this -> logic -> get_timetable($_GET['user'], $_GET['name'], '2014-2015', '1');
+		$response = array('status' => '', 'data' => array());
+
+		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
+		$timetable = $out[0][0];
+
+		preg_match_all('/<td [\w\W]*?>([\w\W]*?)<\/td>/', $timetable, $out);
+		$td = $out[1];
+		$length = count($td);
+
+		//获得课程列表
+		for ($i = 0; $i < $length; $i++) {
+			if (!preg_match_all("/{(.*)}/", $td[$i], $matches)) {
+				unset($td[$i]);
+			}
+		}
+		//将课程列表数组重新索引
+		$td = array_values($td);
 
 		$response['status'] = 'success';
-		$response['data']['msg'] = $result;
+		$response['data']['msg'] = $this -> converttoTable($td);
 
-		echo str_replace("星期","周",$timetable[0][0]);
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 }

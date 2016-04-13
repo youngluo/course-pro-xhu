@@ -44,7 +44,12 @@
 			"js/mui.min.js",
 			"js/zepto.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"js/parent.js",
+			"timetable.html"
+		],
+		"refer": [
+			"timetable.html"
 		]
 	}
 }

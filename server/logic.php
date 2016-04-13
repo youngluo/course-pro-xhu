@@ -34,10 +34,14 @@ class Logic {
 		return $this -> request -> curl('', $post_data);
 	}
 
-	function get_timetable($user, $name) {
+	function get_timetable($user, $name, $year = '', $term = '') {
+		$post_data = '';
 		$name = urlencode(iconv('utf-8', 'gb2312', $name));
 		$url = 'http://jwc.xhu.edu.cn/xskbcx.aspx?gnmkdm=N121603&xm=' . $name . '&xh=' . $user;
-		return $this -> request -> curl($url);
+		if ($year && $term) {
+			$post_data = array('__EVENTTARGET' => 'xnd', '__EVENTARGUMENT' => '', 'xnd' => $year, 'xqd' => $term, '__VIEWSTATE' => $this -> request -> get_viewstate($url));
+		}
+		return $this -> request -> curl($url, $post_data);
 	}
 
 }

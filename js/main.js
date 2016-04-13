@@ -1,6 +1,6 @@
-(function(M, $) {
+(function(M, $, win) {
 
-	var padding = ($(window).height() - $('#main').height()) / 8;
+	var padding = ($(win).height() - $('#main').height()) / 8;
 
 	$('.mui-table-view.mui-grid-view .mui-table-view-cell').css({
 		paddingTop: padding,
@@ -19,14 +19,16 @@
 		var parentPage = null;
 
 		M('#main').on('tap', 'li', function(e) {
-			var title = $(this).find('div').text();
+			var self = this,
+				title = $(this).find('div').text();
 
 			if (!parentPage) {
 				parentPage = plus.webview.getWebviewById('parent');
 			}
 
 			M.fire(parentPage, 'getTitle', {
-				title: title
+				title: title,
+				id: self.id
 			});
 
 			M.openWindow({
@@ -43,4 +45,4 @@
 
 	});
 
-}(mui, Zepto));
+}(mui, Zepto, window));

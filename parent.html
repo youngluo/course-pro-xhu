@@ -7,7 +7,17 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 	</head>
-
+	<style>
+		.mui-bar{
+			background-color: #03aa6c;
+		}
+		.mui-title{
+			color: #fff;
+		}
+		a{
+			color: #fff;
+		}
+	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -16,12 +26,7 @@
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/zepto.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
-		<script>
-			window.addEventListener('getTitle', function(e) {
-				var title = e.detail.title;
-				$('#title').text(title);
-			});
-		</script>
+		<script src="js/parent.js"></script>
 	</body>
 
 </html>
