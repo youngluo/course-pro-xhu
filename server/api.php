@@ -47,18 +47,68 @@ class API {
 
 	//将课表转换成数组形式
 	private function converttoTable($table) {
-		$list = array('mon' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'tues' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'wed' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'thur' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'fri' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'sat' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''), 'sun' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => '', '9,10,11' => ''));
+		$list = array(
+			'mon' => array(
+				'1,2' => '', 
+				'3,4' => '', 
+				'5,6' => '', 
+				'7,8' => '', 
+				'9,10,11' => ''
+			), 
+			'tues' => array(
+				'1,2' => '', 
+				'3,4' => '', 
+				'5,6' => '', 
+				'7,8' => '', 
+				'9,10,11' => ''
+			), 
+			'wed' => array(
+				'1,2' => '', 
+				'3,4' => '',
+				 '5,6' => '', 
+				 '7,8' => '', '
+				 9,10,11' => ''
+			), 
+			'thur' => array(
+				'1,2' => '', 
+				'3,4' => '', 
+				'5,6' => '', 
+				'7,8' => '', 
+				'9,10,11' => ''
+			), 
+			'fri' => array(
+				'1,2' => '', 
+				'3,4' => '',
+			 	'5,6' => '', 
+			 	'7,8' => '', 
+			 	'9,10,11' => ''
+			), 
+			'sat' => array(
+				'1,2' => '', 
+				'3,4' => '', 
+				'5,6' => '', 
+				'7,8' => '', 
+				'9,10,11' => ''
+			), 
+			'sun' => array(
+				'1,2' => '', 
+				'3,4' => '', 
+				'5,6' => '', 
+				'7,8' => '', 
+				'9,10,11' => ''
+			)
+		);
 		$week = array("mon" => "周一", "tues" => "周二", "wed" => "周三", "thur" => "周四", "fri" => "周五", "sat" => "周六", "sun" => "周日");
 		$order = array('1,2', '3,4', '5,6', '7,8', '9,10,11');
-		foreach ($table as $key => $value) {
-			$class = $value;
+		foreach ($table as $key => $course) {
+			echo $course.'--------------'
 			foreach ($week as $key => $weekDay) {
-				$pos = strpos($class, $weekDay);
+				$pos = strpos($course, $weekDay);
 				if ($pos) {
 					$weekArrayDay = $key;
 					//获取list数组中的第一维key
 					foreach ($order as $key => $orderClass) {
-						$pos = strpos($class, $orderClass);
+						$pos = strpos($course, $orderClass);
 						if ($pos) {
 							$weekArrayOrder = $orderClass;
 							//获取该课程是第几节
@@ -68,7 +118,7 @@ class API {
 					break;
 				}
 			}
-			$list[$weekArrayDay][$weekArrayOrder] = $class;
+			$list[$weekArrayDay][$weekArrayOrder] = $course;
 		}
 		return $list;
 	}
@@ -86,6 +136,7 @@ class API {
 
 		//获得课程列表
 		for ($i = 0; $i < $length; $i++) {
+			$td[$i] = str_replace("<br>", "\n", $td[$i]);
 			if (!preg_match_all("/{(.*)}/", $td[$i], $matches)) {
 				unset($td[$i]);
 			}
@@ -96,7 +147,7 @@ class API {
 		$response['status'] = 'success';
 		$response['data']['msg'] = $this -> converttoTable($td);
 
-		echo json_encode($response, JSON_UNESCAPED_UNICODE);
+		//echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 }

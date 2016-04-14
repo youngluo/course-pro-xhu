@@ -2,7 +2,7 @@
 
 	var subPages = ['timetable.html'],
 		subPageStyle = {
-			top: '46px',
+			top: '44px',
 			bottom: 0
 		},
 		activePage = null;
@@ -18,7 +18,7 @@
 		win.addEventListener('getTitle', function(e) {
 			$('#title').text(e.detail.title);
 			var targetPage = e.detail.id;
-			if(targetPage != activePage){
+			if (targetPage != activePage) {
 				plus.webview.hide(activePage);
 				plus.webview.show(targetPage);
 				activePage = targetPage;

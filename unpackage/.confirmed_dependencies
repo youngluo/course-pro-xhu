@@ -23,7 +23,9 @@
 			"js/mui.min.js",
 			"js/zepto.min.js",
 			"css/mui.min.css",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js"
 		],
 		"refer": [
 			"timetable.html",
@@ -41,6 +43,9 @@
 			"vendor/zepto.min.js",
 			"vendor/mui.min.js",
 			"vendor/template.js"
+		],
+		"refer": [
+			"mask.html"
 		]
 	},
 	"parent.html": {
@@ -51,7 +56,9 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"js/parent.js",
-			"timetable.html"
+			"timetable.html",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js"
 		],
 		"refer": [
 			"timetable.html"
