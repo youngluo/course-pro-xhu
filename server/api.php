@@ -54,7 +54,6 @@ class API {
 			$class = $value;
 			foreach ($week as $key => $weekDay) {
 				$pos = strpos($class, $weekDay);
-				// echo $pos;
 				if ($pos) {
 					$weekArrayDay = $key;
 					//获取list数组中的第一维key

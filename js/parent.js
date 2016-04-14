@@ -19,8 +19,6 @@
 			$('#title').text(e.detail.title);
 			var targetPage = e.detail.id;
 			if(targetPage != activePage){
-				console.log(activePage);
-				
 				plus.webview.hide(activePage);
 				plus.webview.show(targetPage);
 				activePage = targetPage;

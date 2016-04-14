@@ -8,37 +8,91 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
 			ul {
-				display: -webkit-flex;
-				display: flex;
 				margin: 0;
 				padding: 0;
-				box-shadow: 1px 1px 1px #ccc;
 			}
 			
 			li {
 				box-sizing: border-box;
-				flex: 1;
+				list-style: none;
+			}
+			
+			#week {
+				display: -webkit-flex;
+				display: flex;
+				box-shadow: 1px 1px 1px #ccc;
+			}
+			
+			#week li {
+				flex: 2;
 				height: 30px;
 				line-height: 30px;
-				list-style: none;
 				border-left: solid 1px #fff;
 				text-align: center;
 				font-size: 14px;
 				color: #8f8f94;
 			}
 			
-			td {
-				border: solid 1px #F6F6F6;
+			#week li:first-child {
+				flex: 1;
+			}
+			
+			.mui-scroll-wrapper {
+				top: 30px;
+			}
+			
+			#month {
 				font-size: 12px;
+			}
+			
+			#timetable > ul {
+				display: -webkit-flex;
+				display: flex;
+			}
+			
+			.course > li {
+				flex: 2;
+				font-size: 12px;
+			}
+			
+			.course > li:first-child {
+				flex: 1;
+			}
+			
+			.course ul li {
+				height: 110px;
+				margin-top: 1px;
+				overflow: hidden;
+			}
+			
+			.course-time li {
+				border-bottom: solid 1px #ccc;
+				border-right: solid 1px #ccc;
+			}
+			
+			.course-time span {
+				display: block;
+				height: 50%;
+				line-height: 55px;
 				text-align: center;
+				color: #03aa6c;
+			}
+			
+			.course-time span:first-child {
+				border-bottom: solid 1px #ccc;
+			}
+			
+			.course-list .course-active {
+				border-radius: 5px;
+				background-color: #ccc;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<ul>
-				<li>时间</li>
+			<ul id="week">
+				<li id="month"></li>
 				<li>周一</li>
 				<li>周二</li>
 				<li>周三</li>
@@ -48,14 +102,54 @@
 				<li>周日</li>
 			</ul>
 			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll">
-					<table id="timetable"></table>
+				<div class="mui-scroll" id="timetable">
+					<script id="timetable-tpl" type="text/html">
+						<ul class="course">
+							<li>
+								<ul class="course-time">
+									<li>
+										<span>1</span>
+										<span>2</span>
+									</li>
+									<li>
+										<span>3</span>
+										<span>4</span>
+									</li>
+									<li>
+										<span>5</span>
+										<span>6</span>
+									</li>
+									<li>
+										<span>7</span>
+										<span>8</span>
+									</li>
+									<li>
+										<span>9</span>
+										<span>10</span>
+									</li>
+								</ul>
+							</li>
+							{{each msg as courseList}}
+							<li>
+								<ul class="course-list">
+									{{each courseList as course}} {{if course}}
+									<li class="course-active">{{course}}</li>
+									{{else}}
+									<li>{{course}}</li>
+
+									{{/if}} {{/each}}
+								</ul>
+							</li>
+							{{/each}}
+						</ul>
+					</script>
 				</div>
 			</div>
 		</div>
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/zepto.min.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
+		<script src="vendor/mui.min.js"></script>
+		<script src="vendor/zepto.min.js"></script>
+		<script src="vendor/template.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/timetable.js"></script>
 	</body>
 

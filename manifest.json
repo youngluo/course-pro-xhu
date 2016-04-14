@@ -210,7 +210,9 @@
 					"js/zepto.min.js",
 					"js/login.js",
 					"js/common.js",
-					"img/logo.png"
+					"img/logo.png",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js"
 				],
 				"refer": [
 					"jwc_login.html",
@@ -249,7 +251,10 @@
 					"css/mui.min.css",
 					"js/timetable.js",
 					"js/zepto.min.js",
-					"js/common.js"
+					"js/common.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"vendor/template.js"
 				],
 				"refer": [],
 				"priority": 0
