@@ -47,61 +47,9 @@ class API {
 
 	//将课表转换成数组形式
 	private function converttoTable($table) {
-		$list = array(
-			'mon' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
-				'7,8' => '', 
-				'9,10,11' => ''
-			), 
-			'tues' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
-				'7,8' => '', 
-				'9,10,11' => ''
-			), 
-			'wed' => array(
-				'1,2' => '', 
-				'3,4' => '',
-				 '5,6' => '', 
-				 '7,8' => '', '
-				 9,10,11' => ''
-			), 
-			'thur' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
-				'7,8' => '', 
-				'9,10,11' => ''
-			), 
-			'fri' => array(
-				'1,2' => '', 
-				'3,4' => '',
-			 	'5,6' => '', 
-			 	'7,8' => '', 
-			 	'9,10,11' => ''
-			), 
-			'sat' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
-				'7,8' => '', 
-				'9,10,11' => ''
-			), 
-			'sun' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
-				'7,8' => '', 
-				'9,10,11' => ''
-			)
-		);
 		$week = array("mon" => "周一", "tues" => "周二", "wed" => "周三", "thur" => "周四", "fri" => "周五", "sat" => "周六", "sun" => "周日");
-		$order = array('1,2', '3,4', '5,6', '7,8', '9,10,11');
+		$order = array('1,2', '3,4', '5,6', '7,8', '9,10', '9,10,11');
 		foreach ($table as $key => $course) {
-			echo $course.'--------------'
 			foreach ($week as $key => $weekDay) {
 				$pos = strpos($course, $weekDay);
 				if ($pos) {
@@ -111,8 +59,9 @@ class API {
 						$pos = strpos($course, $orderClass);
 						if ($pos) {
 							$weekArrayOrder = $orderClass;
-							//获取该课程是第几节
-							break;
+							if($orderClass != '9,10'){
+								break;
+							}
 						}
 					}
 					break;
@@ -120,6 +69,8 @@ class API {
 			}
 			$list[$weekArrayDay][$weekArrayOrder] = $course;
 		}
+		
+
 		return $list;
 	}
 
@@ -147,7 +98,7 @@ class API {
 		$response['status'] = 'success';
 		$response['data']['msg'] = $this -> converttoTable($td);
 
-		//echo json_encode($response, JSON_UNESCAPED_UNICODE);
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 }

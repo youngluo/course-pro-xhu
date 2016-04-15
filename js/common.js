@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var config = {
-		host: 'http://192.168.0.150:9096/CoursePro_xhu/server/'
+		host: 'http://192.168.0.149:9096/CoursePro_xhu/server/'
 	};
 
 	window.Config = config;

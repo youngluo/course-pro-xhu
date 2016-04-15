@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -63,6 +64,10 @@
 				overflow: hidden;
 			}
 			
+			.course .course-time li:last-child{
+				height: 165px;;
+			}
+			
 			.course-time li {
 				border-bottom: solid 1px #ccc;
 				border-right: solid 1px #ccc;
@@ -70,13 +75,13 @@
 			
 			.course-time span {
 				display: block;
-				height: 50%;
+				height: 55px;
 				line-height: 55px;
 				text-align: center;
 				color: #03aa6c;
 			}
 			
-			.course-time span:first-child {
+			.course-time span {
 				border-bottom: solid 1px #ccc;
 			}
 			
@@ -135,14 +140,15 @@
 									<li>
 										<span>9</span>
 										<span>10</span>
+										<span>11</span>
 									</li>
 								</ul>
 							</li>
 							{{each msg as courseList}}
 							<li>
 								<ul class="course-list">
-									{{each courseList as course}} {{if course}}
-									<li class="course-active">{{course}}</li>
+									{{each courseList as course key}} {{if course}}
+									<li class="course-active">{{key}}</li>
 									{{else}}
 									<li>{{course}}</li>
 

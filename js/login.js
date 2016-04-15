@@ -32,6 +32,8 @@
 		captcha.hide();
 		loading.show();
 		M.get(_this.host, function(res) {
+			console.log(res);
+			
 			if (res) {
 				loading.hide();
 				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
