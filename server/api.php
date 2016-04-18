@@ -47,6 +47,7 @@ class API {
 
 	//将课表转换成数组形式
 	private function converttoTable($table) {
+		$list = array('mon' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'tues' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'wed' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'thur' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'fri' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'sat' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''), 'sun' => array('1,2' => '', '3,4' => '', '5,6' => '', '7,8' => ''));
 		$week = array("mon" => "周一", "tues" => "周二", "wed" => "周三", "thur" => "周四", "fri" => "周五", "sat" => "周六", "sun" => "周日");
 		$order = array('1,2', '3,4', '5,6', '7,8', '9,10', '9,10,11');
 		foreach ($table as $key => $course) {
@@ -59,7 +60,7 @@ class API {
 						$pos = strpos($course, $orderClass);
 						if ($pos) {
 							$weekArrayOrder = $orderClass;
-							if($orderClass != '9,10'){
+							if ($orderClass != '9,10') {
 								break;
 							}
 						}
@@ -69,7 +70,6 @@ class API {
 			}
 			$list[$weekArrayDay][$weekArrayOrder] = $course;
 		}
-		
 
 		return $list;
 	}

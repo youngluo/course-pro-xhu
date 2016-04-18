@@ -20,21 +20,26 @@
 			#week {
 				display: -webkit-flex;
 				display: flex;
-				box-shadow: 1px 1px 1px #ccc;
+				box-shadow: 1px 1px 1px #dce1de;
 			}
 			
 			#week li {
 				flex: 2;
 				height: 30px;
 				line-height: 30px;
-				border-left: solid 1px #fff;
+				border-right: solid 1px #fff;
 				text-align: center;
-				font-size: 14px;
-				color: #8f8f94;
+				font-size: 12px;
+				color: #03aa6c;
 			}
 			
 			#week li:first-child {
 				flex: 1;
+			}
+			
+			#week .active {
+				background-color: rgba(3, 187, 119, .5);
+				color: #fff;
 			}
 			
 			.mui-scroll-wrapper {
@@ -53,6 +58,7 @@
 			.course > li {
 				flex: 2;
 				font-size: 12px;
+				color: #fff;
 			}
 			
 			.course > li:first-child {
@@ -60,40 +66,46 @@
 			}
 			
 			.course ul li {
-				height: 110px;
-				overflow: hidden;
+				height: 100px;
 			}
 			
-			.course .course-time li:last-child{
-				height: 165px;;
+			.course .course-time li:last-child {
+				height: 150px;
 			}
 			
 			.course-time li {
-				border-bottom: solid 1px #ccc;
-				border-right: solid 1px #ccc;
+				border-right: solid 1px #e0e2e1;
 			}
 			
 			.course-time span {
 				display: block;
-				height: 55px;
-				line-height: 55px;
+				height: 50px;
+				line-height: 50px;
 				text-align: center;
 				color: #03aa6c;
 			}
 			
 			.course-time span {
-				border-bottom: solid 1px #ccc;
-			}
-			
-			.course-list .course-active {
-				padding: 3px;
-				border-radius: 5px;
-				background-color: #ccc;
+				border-bottom: solid 1px #e0e2e1;
 			}
 			
 			.course-list li {
-				margin: 2px 1px;
+				padding: 1px;
+				line-height: 1.4;
 				text-align: center;
+			}
+			
+			.course-list .course-active div {
+				box-sizing: border-box;
+				height: 100%;
+				padding: 2px;
+				border-radius: 5px;
+				background-color: #53a06e;
+				overflow: hidden;
+			}
+			
+			.course-list .course-active.course-3 {
+				height: 150px;
 			}
 			
 			.mui-backdrop {
@@ -147,15 +159,21 @@
 							{{each msg as courseList}}
 							<li>
 								<ul class="course-list">
-									{{each courseList as course key}} {{if course}}
-									<li class="course-active">{{key}}</li>
-									{{else}}
-									<li>{{course}}</li>
-
-									{{/if}} {{/each}}
+									{{each courseList as course key}} {{if course}} {{if key.indexOf('11') >= 0}}
+									<li class="course-active course-3">
+										{{else}}
+										<li class="course-active">
+											{{/if}}
+											<div>
+												{{course}}
+											</div>
+										</li>
+										{{else}}
+										<li>{{course}}</li>
+										{{/if}} {{/each}}
 								</ul>
-							</li>
-							{{/each}}
+								</li>
+								{{/each}}
 						</ul>
 					</script>
 				</div>
