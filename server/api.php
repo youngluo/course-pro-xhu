@@ -100,5 +100,12 @@ class API {
 
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
+	
+	function getScore(){
+		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
+		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
+		$score = $out[0][0];
+		echo $score;
+	}
 
 }

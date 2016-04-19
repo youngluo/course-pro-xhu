@@ -26,6 +26,7 @@
 			},
 			error: function(xhr, type, error) {
 				plus.nativeUI.closeWaiting();
+				console.log(type);
 				if (type == 'timeout') {
 					M.toast('获取数据时间较长，请重新获取！');
 				}

@@ -58,10 +58,22 @@
 			"js/parent.js",
 			"timetable.html",
 			"vendor/zepto.min.js",
-			"vendor/mui.min.js"
+			"vendor/mui.min.js",
+			"score.html"
 		],
 		"refer": [
-			"timetable.html"
+			"timetable.html",
+			"score.html"
+		]
+	},
+	"score.html": {
+		"resources": [
+			"js/score.js",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"js/common.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
 		]
 	}
 }
