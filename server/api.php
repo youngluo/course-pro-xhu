@@ -100,12 +100,31 @@ class API {
 
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
-	
-	function getScore(){
+
+	function getScore() {
 		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
-		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
-		$score = $out[0][0];
-		echo $score;
+		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out_table);
+		preg_match_all('/<tr(?! class="datelisthead")>([\w\W]*?)<\/tr>/', $out_table[0][0], $out_tr);
+		$tr = $out_tr[1];
+		$tr_length = count($tr);
+		for ($i = 0; $i < $tr_length; $i++) {
+			preg_match_all('/<td>([\w\W]*?)<\/td>/', $tr[$i], $out_td);
+			$tr[$i] = $out_td[1];
+		}
+
+		$save_key = array('0', '1', '3', '6', '7', '8');
+
+		for ($j = 0; $j < $tr_length; $j++) {
+			$td = $tr[$j];
+			$td_length = count($td);
+			for ($k = 0; $k < $td_length; $k++) {
+				if (!in_array($k, $save_key)) {
+					unset($td[$k]);
+				}
+			}
+			$tr[$j] = array_values($td);
+		}
+		echo json_encode($tr, JSON_UNESCAPED_UNICODE);
 	}
 
 }
