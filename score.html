@@ -6,14 +6,96 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/common.css" rel="stylesheet" />
 		<style>
+			.mui-content {
+				font-size: 14px;
+			}
+			
+			#score-head {
+				display: -webkit-flex;
+				display: flex;
+				height: 35px;
+				line-height: 35px;
+				padding: 0 10px;
+				box-shadow: 1px 1px 1px #dce1de;
+				text-align: center;
+				color: #03aa6c;
+			}
+			
+			#score-head li {
+				flex: 1;
+			}
+			
+			#score-head li:first-child {
+				flex: 2;
+			}
+			
+			#score-head li:nth-child(3) {
+				flex: 3;
+			}
+			
+			.mui-scroll-wrapper {
+				top: 35px;
+			}
+			
+			#score-lists {
+				padding: 10px;
+				font-size: 13px;
+				color: #8f8f94;
+				text-align: center;
+			}
+			
+			#score-lists > li {
+				border-bottom: solid 1px #dce1de;
+			}
+			
+			.score-list {
+				display: -webkit-flex;
+				display: flex;
+				padding: 15px 0;
+			}
+			
+			.score-list li:first-child {
+				flex: 2;
+			}
+			
+			.score-list li:nth-child(3) {
+				flex: 3;
+			}
+			
+			.score-list li {
+				flex: 1;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
-			<div id="score">
-				
+			<ul id="score-head">
+				<li>学年</li>
+				<li>学期</li>
+				<li>课程名称</li>
+				<li>学分</li>
+				<li>绩点</li>
+				<li>成绩</li>
+			</ul>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll" id="score">
+					<script id="score-tpl" type="text/html">
+						<ul id="score-lists">
+							{{each msg as scoreList}}
+							<li>
+								<ul class="score-list">
+									{{each scoreList as item}}
+									<li>{{item}}</li>
+									{{/each}}
+								</ul>
+							</li>
+							{{/each}}
+						</ul>
+					</script>
+				</div>
 			</div>
 		</div>
 		<script src="vendor/mui.min.js"></script>

@@ -76,7 +76,6 @@ class API {
 
 	function getTimetable() {
 		$result = $this -> logic -> get_timetable($_GET['user'], $_GET['name'], '2014-2015', '1');
-		$response = array('status' => '', 'data' => array());
 
 		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
 		$timetable = $out[0][0];
@@ -104,7 +103,7 @@ class API {
 	function getScore() {
 		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
 		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out_table);
-		preg_match_all('/<tr(?! class="datelisthead")>([\w\W]*?)<\/tr>/', $out_table[0][0], $out_tr);
+		preg_match_all('/<tr[\w\W]*?>([\w\W]*?)<\/tr>/', $out_table[0][0], $out_tr);
 		$tr = $out_tr[1];
 		$tr_length = count($tr);
 		for ($i = 0; $i < $tr_length; $i++) {
@@ -115,6 +114,10 @@ class API {
 		$save_key = array('0', '1', '3', '6', '7', '8');
 
 		for ($j = 0; $j < $tr_length; $j++) {
+			if($j==0){
+				unset($tr[$j]);
+				continue;
+			}
 			$td = $tr[$j];
 			$td_length = count($td);
 			for ($k = 0; $k < $td_length; $k++) {
@@ -124,7 +127,10 @@ class API {
 			}
 			$tr[$j] = array_values($td);
 		}
-		echo json_encode($tr, JSON_UNESCAPED_UNICODE);
+		
+		$response['status'] = 'success';
+		$response['data']['msg'] = $tr;
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 }
