@@ -6,32 +6,174 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/common.css" rel="stylesheet" />
 		<style>
-			td {
-				border: solid 1px #F6F6F6;
+			#week {
+				display: -webkit-flex;
+				display: flex;
+				box-shadow: 1px 1px 1px #dce1de;
+			}
+			
+			#week li {
+				flex: 2;
+				height: 30px;
+				line-height: 30px;
+				border-right: solid 1px #fff;
+				text-align: center;
 				font-size: 12px;
+				color: #03aa6c;
+			}
+			
+			#week li:first-child {
+				flex: 1;
+			}
+			
+			#week .active {
+				background-color: rgba(3, 187, 119, .5);
+				color: #fff;
+			}
+			
+			.mui-scroll-wrapper {
+				top: 30px;
+			}
+			
+			#month {
+				font-size: 12px;
+			}
+			
+			#timetable > ul {
+				display: -webkit-flex;
+				display: flex;
+			}
+			
+			.course > li {
+				flex: 2;
+				font-size: 12px;
+				color: #fff;
+			}
+			
+			.course > li:first-child {
+				flex: 1;
+			}
+			
+			.course ul li {
+				height: 100px;
+			}
+			
+			.course .course-time li:last-child {
+				height: 150px;
+			}
+			
+			.course-time li {
+				border-right: solid 1px #e0e2e1;
+			}
+			
+			.course-time span {
+				display: block;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color: #03aa6c;
+			}
+			
+			.course-time span {
+				border-bottom: solid 1px #e0e2e1;
+			}
+			
+			.course-list li {
+				padding: 1px;
+				line-height: 1.4;
 				text-align: center;
 			}
-			#kcb {
-				padding: 5px;
+			
+			.course-list .course-active div {
+				box-sizing: border-box;
+				height: 100%;
+				padding: 2px;
+				border-radius: 5px;
+				background-color: #53a06e;
+				overflow: hidden;
+			}
+			
+			.course-list .course-active.course-3 {
+				height: 150px;
+			}
+			
+			.mui-backdrop {
+				top: -5px;
+				background-color: rgba(0, 0, 0, .5);
 			}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 id="title" class="mui-title">课程表</h1>
-		</header>
-		<div class="mui-content mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div id="timetable">
+		<div class="mui-content">
+			<ul id="week">
+				<li id="month"></li>
+				<li>周一</li>
+				<li>周二</li>
+				<li>周三</li>
+				<li>周四</li>
+				<li>周五</li>
+				<li>周六</li>
+				<li>周日</li>
+			</ul>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll" id="timetable">
+					<script id="timetable-tpl" type="text/html">
+						<ul class="course">
+							<li>
+								<ul class="course-time">
+									<li>
+										<span>1</span>
+										<span>2</span>
+									</li>
+									<li>
+										<span>3</span>
+										<span>4</span>
+									</li>
+									<li>
+										<span>5</span>
+										<span>6</span>
+									</li>
+									<li>
+										<span>7</span>
+										<span>8</span>
+									</li>
+									<li>
+										<span>9</span>
+										<span>10</span>
+										<span>11</span>
+									</li>
+								</ul>
+							</li>
+							{{each msg as courseList}}
+							<li>
+								<ul class="course-list">
+									{{each courseList as course key}} {{if course}} {{if key.indexOf('11') >= 0}}
+									<li class="course-active course-3">
+										{{else}}
+										<li class="course-active">
+											{{/if}}
+											<div>
+												{{course}}
+											</div>
+										</li>
+										{{else}}
+										<li>{{course}}</li>
+										{{/if}} {{/each}}
+								</ul>
+								</li>
+								{{/each}}
+						</ul>
+					</script>
 				</div>
 			</div>
 		</div>
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/zepto.min.js" ></script>
-		<script type="text/javascript" src="js/common.js" ></script>
+		<script src="vendor/mui.min.js"></script>
+		<script src="vendor/zepto.min.js"></script>
+		<script src="vendor/template.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/timetable.js"></script>
 	</body>
 

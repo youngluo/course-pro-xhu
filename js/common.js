@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var config = {
-		host: 'http://192.168.199.140/CoursePro_xhu/server/'
+		host: 'http://192.168.0.148:9096/CoursePro_xhu/server/'
 	};
 
 	window.Config = config;
@@ -26,6 +26,7 @@
 			},
 			error: function(xhr, type, error) {
 				plus.nativeUI.closeWaiting();
+				console.log(type);
 				if (type == 'timeout') {
 					M.toast('获取数据时间较长，请重新获取！');
 				}

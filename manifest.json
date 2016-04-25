@@ -1,7 +1,7 @@
 {
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H5EE80DCB",/*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name": "xhu_1.1.0",/*应用名称，程序桌面图标名称*/
+    "name": "CoursePro_xhu",/*应用名称，程序桌面图标名称*/
     "version": {
         "name": "1.1.0",/*应用版本名称*/
         "code": "83"
@@ -210,7 +210,9 @@
 					"js/zepto.min.js",
 					"js/login.js",
 					"js/common.js",
-					"img/logo.png"
+					"img/logo.png",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js"
 				],
 				"refer": [
 					"jwc_login.html",
@@ -234,10 +236,13 @@
 					"js/main.js",
 					"js/zepto.min.js",
 					"js/common.js",
-					"img/logo.png"
+					"img/logo.png",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js"
 				],
 				"refer": [
-					"timetable.html"
+					"timetable.html",
+					"parent.html"
 				],
 				"priority": 0
 			},
@@ -248,7 +253,41 @@
 					"css/mui.min.css",
 					"js/timetable.js",
 					"js/zepto.min.js",
-					"js/common.js"
+					"js/common.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"vendor/template.js"
+				],
+				"refer": [
+					"mask.html"
+				],
+				"priority": 0
+			},
+			"parent.html": {
+				"resources": [
+					"js/common.js",
+					"js/mui.min.js",
+					"js/zepto.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/parent.js",
+					"timetable.html",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"score.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"score.html": {
+				"resources": [
+					"js/score.js",
+					"vendor/template.js",
+					"vendor/zepto.min.js",
+					"js/common.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css",
+					"css/common.css"
 				],
 				"refer": [],
 				"priority": 0

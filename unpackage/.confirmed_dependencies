@@ -7,7 +7,9 @@
 			"js/login.js",
 			"css/mui.min.css",
 			"fonts/mui.ttf",
-			"img/logo.png"
+			"img/logo.png",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js"
 		],
 		"refer": [
 			"main.html"
@@ -21,10 +23,13 @@
 			"js/mui.min.js",
 			"js/zepto.min.js",
 			"css/mui.min.css",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js"
 		],
 		"refer": [
-			"timetable.html"
+			"timetable.html",
+			"parent.html"
 		]
 	},
 	"timetable.html": {
@@ -34,7 +39,42 @@
 			"css/mui.min.css",
 			"js/timetable.js",
 			"js/zepto.min.js",
-			"js/common.js"
+			"js/common.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"vendor/template.js"
+		],
+		"refer": [
+			"mask.html"
+		]
+	},
+	"parent.html": {
+		"resources": [
+			"js/common.js",
+			"js/mui.min.js",
+			"js/zepto.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/parent.js",
+			"timetable.html",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"score.html"
+		],
+		"refer": [
+			"timetable.html",
+			"score.html"
+		]
+	},
+	"score.html": {
+		"resources": [
+			"js/score.js",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"js/common.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css",
+			"css/common.css"
 		]
 	}
 }
