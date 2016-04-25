@@ -1,5 +1,5 @@
 (function(M, $) {
-	
+
 	var oDate = new Date();
 	$('#month').text(oDate.getMonth() + 1 + '月');
 	$('#week li').eq(oDate.getDay()).addClass('active');
@@ -16,7 +16,7 @@
 
 		var mask = null;
 		M('#timetable').on('tap', '.course-active', function(e) {
-			/*if (!mask) {
+			if (!mask) {
 				mask = plus.webview.getWebviewById('parent');
 				mask.addEventListener("maskClick", function() {
 					mask.setStyle({
@@ -25,9 +25,10 @@
 				}, false);
 			}
 			mask.setStyle({
-				mask: "rgba(0,0,0,0.5)"
+				mask: "rgba(0,0,0,.6)"
 			});
-			mask.innerText = $(this).text();*/
+
+			mask.innerText = $(this).text();
 		});
 	});
 

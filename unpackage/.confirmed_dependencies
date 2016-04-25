@@ -29,7 +29,8 @@
 		],
 		"refer": [
 			"timetable.html",
-			"parent.html"
+			"parent.html",
+			"popover.html"
 		]
 	},
 	"timetable.html": {
@@ -42,7 +43,8 @@
 			"js/common.js",
 			"vendor/zepto.min.js",
 			"vendor/mui.min.js",
-			"vendor/template.js"
+			"vendor/template.js",
+			"css/common.css"
 		],
 		"refer": [
 			"mask.html"
@@ -63,7 +65,8 @@
 		],
 		"refer": [
 			"timetable.html",
-			"score.html"
+			"score.html",
+			"popover.html"
 		]
 	},
 	"score.html": {
@@ -75,6 +78,13 @@
 			"vendor/mui.min.js",
 			"css/mui.min.css",
 			"css/common.css"
+		]
+	},
+	"popover.html": {
+		"resources": [
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"vendor/mui.min.js"
 		]
 	}
 }

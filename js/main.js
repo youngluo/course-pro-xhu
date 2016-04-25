@@ -7,14 +7,15 @@
 		paddingBottom: padding
 	});
 
-	M.init({
-		preloadPages: [{
-			id: 'parent',
-			url: 'parent.html'
-		}]
-	});
-
 	M.plusReady(function() {
+		M.preload({
+			id: 'parent',
+			url: 'parent.html',
+			styles: {
+				top: 0,
+				bottom: 0
+			}
+		});
 
 		var parentPage = null;
 
@@ -32,14 +33,7 @@
 			});
 
 			M.openWindow({
-				id: 'parent',
-				styles: {
-					top: 0,
-					bottom: 0
-				},
-				waiting: {
-					autoShow: false
-				}
+				id: 'parent'
 			});
 		});
 
