@@ -100,8 +100,7 @@ class API {
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
-	function getScore() {
-		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
+	private function get_course_data($result, $save_key) {
 		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out_table);
 		preg_match_all('/<tr[\w\W]*?>([\w\W]*?)<\/tr>/', $out_table[0][0], $out_tr);
 		$tr = $out_tr[1];
@@ -111,15 +110,14 @@ class API {
 			$tr[$i] = $out_td[1];
 		}
 
-		$save_key = array('0', '1', '3', '6', '7', '8');
-
 		for ($j = 0; $j < $tr_length; $j++) {
-			if($j==0){
+			if ($j == 0) {
 				unset($tr[$j]);
 				continue;
 			}
 			$td = $tr[$j];
 			$td_length = count($td);
+
 			for ($k = 0; $k < $td_length; $k++) {
 				if (!in_array($k, $save_key)) {
 					unset($td[$k]);
@@ -127,9 +125,34 @@ class API {
 			}
 			$tr[$j] = array_values($td);
 		}
-		
+
+		return $tr;
+	}
+
+	function getScore() {
+		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
+		$save_key = array('0', '1', '3', '6', '7', '8');
+
 		$response['status'] = 'success';
-		$response['data']['msg'] = $tr;
+		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
+	}
+
+	function getFailedCourse() {
+		$result = $this -> logic -> get_failed_course($_GET['user'], $_GET['name']);
+		$save_key = array('0', '1', '2', '3', '4');
+
+		$response['status'] = 'success';
+		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
+	}
+
+	function getExam() {
+		$result = $this -> logic -> get_exam($_GET['user'], $_GET['name']);
+		$save_key = array('1', '2', '3', '4', '5', '6');
+
+		$response['status'] = 'success';
+		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
