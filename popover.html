@@ -6,40 +6,52 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/common.css" rel="stylesheet" />
 	</head>
 	<style>
 		html,
 		body,
 		.mui-content {
+			height: 100%;
 			background: transparent;
 		}
 
 		ul {
-			width: 50%;
+			width: 170px;
+			margin-top: 44px;
+			margin-right: 10px;
+			-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .3), -1px -1px 2px rgba(0, 0, 0, .1);
+			box-shadow: 1px 1px 2px rgba(0, 0, 0, .3), -1px -1px 2px rgba(0, 0, 0, .1);
+			background-color: #03aa6c;
+			color: #fff;
+		}
+
+		.mui-table-view-cell>a:not(.mui-btn).mui-active {
+			background-color: #039d64;
+		}
+
+		.mui-table-view-cell:after {
+			left: 0;
+			background-color: #039d64;
 		}
 	</style>
 
 	<body>
-		<header class="mui-bar mui-bar-nav">
-			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 id="title" class="mui-title"></h1>
-			<a id="more" class="mui-icon mui-icon-right-nav mui-pull-right mui-icon-more-filled"></a>
-		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view mui-pull-right">
-				<li class="mui-table-view-cell"><a href="#">Item1</a></li>
-				<li class="mui-table-view-cell"><a href="#">Item2</a></li>
-				<li class="mui-table-view-cell"><a href="#">Item3</a></li>
-				<li class="mui-table-view-cell"><a href="#">Item4</a></li>
-				<li class="mui-table-view-cell"><a href="#">Item5</a></li>
+			<ul class="mui-pull-right">
+				<li class="mui-table-view-cell"><a href="#">重新导入数据</a></li>
+				<li class="mui-table-view-cell"><a href="#">帮助与反馈</a></li>
 			</ul>
 		</div>
 		<script type="text/javascript" src="vendor/mui.min.js"></script>
 		<script>
 			(function(M) {
-				M('html').on('tap', 'body', function() {
-					alert('ss');
-
+				M.plusReady(function() {
+					M('html').on('tap', 'body', function(e) {
+						if (e.target.tagName.toLowerCase() !== 'a') {
+							plus.webview.currentWebview().hide();
+						}
+					});
 				});
 			}(mui));
 		</script>

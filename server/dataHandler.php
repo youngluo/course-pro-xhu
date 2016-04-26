@@ -1,22 +1,22 @@
 <?php
 
-require_once 'logic.php';
+require_once 'dataProvider.php';
 require_once 'lib/simple_html_dom.php';
 
-class API {
+class DataHandler {
 
-	private $logic = null;
+	private $dataProvider = null;
 
 	function __construct() {
-		$this -> logic = new Logic();
+		$this -> dataProvider = new DataProvider();
 	}
 
 	function getCookie() {
-		echo $this -> logic -> get_cookie();
+		echo $this -> dataProvider -> get_cookie();
 	}
 
 	function login() {
-		$result = $this -> logic -> login($_POST['user'], $_POST['psw'], $_POST['captcha']);
+		$result = $this -> dataProvider -> login($_POST['user'], $_POST['psw'], $_POST['captcha']);
 
 		$response = array('status' => '', 'data' => array());
 
@@ -75,7 +75,7 @@ class API {
 	}
 
 	function getTimetable() {
-		$result = $this -> logic -> get_timetable($_GET['user'], $_GET['name'], '2014-2015', '1');
+		$result = $this -> dataProvider -> get_timetable($_GET['user'], $_GET['name'], '2014-2015', '1');
 
 		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
 		$timetable = $out[0][0];
@@ -130,7 +130,7 @@ class API {
 	}
 
 	function getScore() {
-		$result = $this -> logic -> get_score($_GET['user'], $_GET['name']);
+		$result = $this -> dataProvider -> get_score($_GET['user'], $_GET['name']);
 		$save_key = array('0', '1', '3', '6', '7', '8');
 
 		$response['status'] = 'success';
@@ -139,7 +139,7 @@ class API {
 	}
 
 	function getFailedCourse() {
-		$result = $this -> logic -> get_failed_course($_GET['user'], $_GET['name']);
+		$result = $this -> dataProvider -> get_failed_course($_GET['user'], $_GET['name']);
 		$save_key = array('0', '1', '2', '3', '4');
 
 		$response['status'] = 'success';
@@ -148,7 +148,7 @@ class API {
 	}
 
 	function getExam() {
-		$result = $this -> logic -> get_exam($_GET['user'], $_GET['name']);
+		$result = $this -> dataProvider -> get_exam($_GET['user'], $_GET['name']);
 		$save_key = array('1', '2', '3', '4', '5', '6');
 
 		$response['status'] = 'success';

@@ -3,9 +3,9 @@
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Headers:X-Requested-With');
 
-require_once 'api.php';
+require_once 'dataHandler.php';
 
-$api = new API();
+$data = new DataHandler();
 $method = isset($_GET['c']) ? $_GET['c'] : 'getCookie';
 
-$api -> $method();
+$data -> $method();
