@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		html,
+		body,
+		.mui-content {
+			background: transparent;
+		}
+
+		ul {
+			width: 50%;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+			<a id="more" class="mui-icon mui-icon-right-nav mui-pull-right mui-icon-more-filled"></a>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view mui-pull-right">
+				<li class="mui-table-view-cell"><a href="#">Item1</a></li>
+				<li class="mui-table-view-cell"><a href="#">Item2</a></li>
+				<li class="mui-table-view-cell"><a href="#">Item3</a></li>
+				<li class="mui-table-view-cell"><a href="#">Item4</a></li>
+				<li class="mui-table-view-cell"><a href="#">Item5</a></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="vendor/mui.min.js"></script>
+		<script>
+			(function(M) {
+				M('html').on('tap', 'body', function() {
+					alert('ss');
+
+				});
+			}(mui));
+		</script>
+	</body>
+
+</html>
