@@ -2,7 +2,7 @@
 
 require_once 'request.php';
 
-class Logic {
+class DataProvider {
 
 	private $request = null;
 
@@ -45,7 +45,6 @@ class Logic {
 	}
 
 	function get_score($user, $name) {
-		$post_data = '';
 		$name = urlencode(iconv('utf-8', 'gb2312', $name));
 		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
 		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zcj' => '历年成绩');
@@ -53,18 +52,16 @@ class Logic {
 	}
 
 	function get_failed_course($user, $name) {
-		$post_data = '';
 		$name = urlencode(iconv('utf-8', 'gb2312', $name));
 		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
 		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'Button2' => '未通过成绩');
 		return $this -> request -> curl($url, $post_data);
 	}
-	
+
 	function get_exam($user, $name){
-		$post_data = '';
 		$name = urlencode(iconv('utf-8', 'gb2312', $name));
 		$url = 'http://jwc.xhu.edu.cn/xskscx.aspx?gnmkdm=N121604&xm=' . $name . '&xh=' . $user;
-		return $this -> request -> curl($url, $post_data);
+		return $this -> request -> curl($url);
 	}
 
 }

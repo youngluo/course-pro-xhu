@@ -37,13 +37,11 @@
 		});
 
 		var popoverPage = null;
-
 		M('.mui-bar-nav').on('tap', '#more', function() {
-			console.log('666')
-			M.openWindow({
-				id: 'popover'
-			});
-
+			if(!popoverPage){
+				popoverPage = plus.webview.getWebviewById('popover')
+			}
+			popoverPage.show();
 		});
 	});
 
