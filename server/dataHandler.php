@@ -100,30 +100,29 @@ class DataHandler {
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
-	private function get_course_data($result, $save_key) {
-		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out_table);
-		preg_match_all('/<tr[\w\W]*?>([\w\W]*?)<\/tr>/', $out_table[0][0], $out_tr);
+	private function get_course_data($result, $save_key = null) {
+		preg_match_all('/<tr[\w\W]*?>([\w\W]*?)<\/tr>/', $result, $out_tr);
 		$tr = $out_tr[1];
 		$tr_length = count($tr);
-		for ($i = 0; $i < $tr_length; $i++) {
+		for ($i = 1; $i < $tr_length; $i++) {
 			preg_match_all('/<td>([\w\W]*?)<\/td>/', $tr[$i], $out_td);
 			$tr[$i] = $out_td[1];
 		}
 
-		for ($j = 0; $j < $tr_length; $j++) {
-			if ($j == 0) {
-				unset($tr[$j]);
-				continue;
-			}
-			$td = $tr[$j];
-			$td_length = count($td);
+		unset($tr[0]);
 
-			for ($k = 0; $k < $td_length; $k++) {
-				if (!in_array($k, $save_key)) {
-					unset($td[$k]);
+		if (!!$save_key) {
+			for ($j = 1; $j < $tr_length; $j++) {
+				$td = $tr[$j];
+				$td_length = count($td);
+
+				for ($k = 0; $k < $td_length; $k++) {
+					if (!in_array($k, $save_key)) {
+						unset($td[$k]);
+					}
 				}
+				$tr[$j] = array_values($td);
 			}
-			$tr[$j] = array_values($td);
 		}
 
 		return $tr;
@@ -131,28 +130,52 @@ class DataHandler {
 
 	function getScore() {
 		$result = $this -> dataProvider -> get_score($_GET['user'], $_GET['name']);
+		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $original_data);
 		$save_key = array('0', '1', '3', '6', '7', '8');
 
 		$response['status'] = 'success';
-		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
+		$response['data']['msg'] = $this -> get_course_data($original_data[0][0], $save_key);
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 	function getFailedCourse() {
 		$result = $this -> dataProvider -> get_failed_course($_GET['user'], $_GET['name']);
+		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $original_data);
 		$save_key = array('0', '1', '2', '3', '4');
 
 		$response['status'] = 'success';
-		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
+		$response['data']['msg'] = $this -> get_course_data($original_data[0][0], $save_key);
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 
 	function getExam() {
 		$result = $this -> dataProvider -> get_exam($_GET['user'], $_GET['name']);
+		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $original_data);
 		$save_key = array('1', '2', '3', '4', '5', '6');
 
 		$response['status'] = 'success';
-		$response['data']['msg'] = $this -> get_course_data($result, $save_key);
+		$response['data']['msg'] = $this -> get_course_data($original_data[0][0], $save_key);
+		echo json_encode($response, JSON_UNESCAPED_UNICODE);
+	}
+
+	function getUndergraduateProgram() {
+		$result = $this -> dataProvider -> get_undergraduate_program($_GET['user'], $_GET['name']);
+		preg_match_all('/<div id="divDataGrid4" class="divPadding">([\w\W]*?)<\/div>/', $result, $original_data);
+
+		$train_plan = $this -> get_course_data($original_data[0][0]);
+		$total_credit = 0;
+
+		foreach ($train_plan as $index => $item) {
+			$credit = floatval($item[1]);
+			if (!$credit) {
+				unset($train_plan[$index]);
+			}
+			$total_credit += $credit;
+		}
+
+		$train_plan = array_values($train_plan);
+		$response['status'] = 'success';
+		$response['data']['msg'] = $train_plan;
 		echo json_encode($response, JSON_UNESCAPED_UNICODE);
 	}
 

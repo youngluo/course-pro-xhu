@@ -63,5 +63,11 @@ class DataProvider {
 		$url = 'http://jwc.xhu.edu.cn/xskscx.aspx?gnmkdm=N121604&xm=' . $name . '&xh=' . $user;
 		return $this -> request -> curl($url);
 	}
+	
+	function get_undergraduate_program($user, $name){
+		$name = urlencode(iconv('utf-8', 'gb2312', $name));
+		$url = 'http://jwc.xhu.edu.cn/pyjh.aspx?gnmkdm=N121607&xm=' . $name . '&xh=' . $user;
+		return $this -> request -> curl($url);
+	}
 
 }
