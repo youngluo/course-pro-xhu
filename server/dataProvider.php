@@ -58,10 +58,23 @@ class DataProvider {
 		return $this -> request -> curl($url, $post_data);
 	}
 
-	function get_exam($user, $name){
+	function get_exam($user, $name) {
 		$name = urlencode(iconv('utf-8', 'gb2312', $name));
 		$url = 'http://jwc.xhu.edu.cn/xskscx.aspx?gnmkdm=N121604&xm=' . $name . '&xh=' . $user;
 		return $this -> request -> curl($url);
+	}
+
+	function get_train_plan($user, $name) {
+		$name = urlencode(iconv('utf-8', 'gb2312', $name));
+		$url = 'http://jwc.xhu.edu.cn/pyjh.aspx?gnmkdm=N121607&xm=' . $name . '&xh=' . $user;
+		return $this -> request -> curl($url);
+	}
+
+	function get_credits($user, $name) {
+		$name = urlencode(iconv('utf-8', 'gb2312', $name));
+		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
+		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zg' => '课程最高成绩');
+		return $this -> request -> curl($url, $post_data);
 	}
 
 }
