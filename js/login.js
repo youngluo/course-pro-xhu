@@ -33,7 +33,7 @@
 		loading.show();
 		M.get(_this.host, function(res) {
 			console.log(res);
-			
+
 			if (res) {
 				loading.hide();
 				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
@@ -59,24 +59,17 @@
 			type: 'post',
 			timeout: '15000', //15s
 			success: function(res) {
+				alert(JSON.stringify(res))
 				plus.nativeUI.closeWaiting();
-				M.toast(res.data.msg);
-				if (res.status == 'success') {
+				if (res.code == 200) {
+					M.toast(res.message + '同学，登录成功！');
 					plus.storage.setItem('user', user);
-					plus.storage.setItem('name', res.data.name);
+					plus.storage.setItem('name', res.message);
 					_this.rememberPassword();
-					M.openWindow({
-						url: 'main.html',
-						id: 'main',
-						styles: {
-							top: 0,
-							bottom: 0
-						},
-						waiting: {
-							autoShow: false
-						}
-					});
-				} else if (res.status == 'error') {
+					_this.saveData(res.data);
+
+				} else if (res.code == 400) {
+					M.toast(res.message);
 					setTimeout(function() {
 						_this.getCaptcha();
 					}, 1000);
@@ -87,6 +80,21 @@
 				if (type == 'timeout') {
 					M.toast('登录时间较长，请重新登录！');
 				}
+			}
+		});
+	}
+
+	loginFn.saveData = function(data) {
+		alert(JSON.stringify(data));
+		M.openWindow({
+			url: 'main.html',
+			id: 'main',
+			styles: {
+				top: 0,
+				bottom: 0
+			},
+			waiting: {
+				autoShow: false
 			}
 		});
 	}

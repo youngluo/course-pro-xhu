@@ -1,11 +1,11 @@
 (function(M, $, win) {
 
-	var subPages = ['exam.html', 'undergraduateProgram.html'],
+	var subPages = ['timetable.html'],
+		activePage = null,
 		subPageStyle = {
 			top: '44px',
 			bottom: 0
 		},
-		activePage = null,
 		popover = null;
 
 	M.plusReady(function() {
@@ -38,7 +38,7 @@
 
 		var popoverPage = null;
 		M('.mui-bar-nav').on('tap', '#more', function() {
-			if(!popoverPage){
+			if (!popoverPage) {
 				popoverPage = plus.webview.getWebviewById('popover')
 			}
 			popoverPage.show();

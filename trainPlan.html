@@ -25,6 +25,7 @@
 			
 			.mui-scroll-wrapper {
 				top: 35px;
+				bottom: 50px;
 			}
 			
 			#course-lists {
@@ -48,6 +49,23 @@
 			#course-head li {
 				-webkit-flex: 1;
 				flex: 1;
+			}
+			
+			nav span {
+				display: table-cell;
+				overflow: hidden;
+				width: 1%;
+				height: 50px;
+				text-align: center;
+				vertical-align: middle;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #929292;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+				box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 			}
 		</style>
 	</head>
@@ -76,11 +94,15 @@
 				</div>
 			</div>
 		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<span>最低毕业学分：</span>
+			<span id="totalCredit"></span>
+		</nav>
 		<script src="vendor/mui.min.js"></script>
 		<script src="vendor/zepto.min.js"></script>
 		<script src="vendor/template.js"></script>
 		<script src="js/common.js"></script>
-		<script src="js/undergraduateProgram.js"></script>
+		<script src="js/trainPlan.js"></script>
 	</body>
 
 </html>

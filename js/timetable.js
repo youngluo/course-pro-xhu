@@ -7,9 +7,9 @@
 	M.plusReady(function() {
 		M('.mui-scroll-wrapper').scroll();
 
-		H.getData('Timetable', function(res) {
+		H.getData('get_all_data', function(res) {
 			res = JSON.parse(res);
-			if (res.status == 'success') {
+			if (res.code == 200) {
 				$('#timetable').html(template('timetable-tpl', res.data));
 			}
 		});

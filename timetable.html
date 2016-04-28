@@ -147,21 +147,24 @@
 									</li>
 								</ul>
 							</li>
-							{{each msg as courseList}}
+							{{each timetable as courseList}}
 							<li>
 								<ul class="course-list">
-									{{each courseList as course key}} {{if course}} {{if key.indexOf('11') >= 0}}
-									<li class="course-active course-3">
-										{{else}}
-										<li class="course-active">
+									{{each courseList as course key}} 
+										{{if course}} 
+											{{if key.indexOf('11') >= 0}}
+												<li class="course-active course-3">
+											{{else}}
+											<li class="course-active">
 											{{/if}}
-											<div>
-												{{course}}
-											</div>
-										</li>
-										{{else}}
-										<li>{{course}}</li>
-										{{/if}} {{/each}}
+												<div>
+													{{course}}
+												</div>
+											</li>
+											{{else}}
+											<li>{{course}}</li>
+										{{/if}} 
+									{{/each}}
 								</ul>
 								</li>
 								{{/each}}
