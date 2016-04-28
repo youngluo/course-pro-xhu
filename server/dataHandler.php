@@ -8,38 +8,38 @@ class DataHandler {
 	private $dataProvider = null;
 
 	function __construct() {
-		
+
 		$this -> dataProvider = new DataProvider();
-		
+
 	}
 
 	function cookie() {
-		
+
 		echo $this -> dataProvider -> get_cookie();
-		
+
 	}
 
 	function login() {
-		
+
 		$this -> user = $_POST['user'];
 		$result = $this -> dataProvider -> login($this -> user, $_POST['psw'], $_POST['captcha']);
 
 		if (strripos($result, 'ERROR') > 0) {
-			
+
 			Response::json(400, '系统正忙');
-			
+
 		} else if (strripos($result, '欢迎您') > 0) {
 
 			preg_match_all('/<span id="xhxm">(.*?)<\/span>/', $result, $matches);
-			$this -> $name = str_replace('同学', '', $matches[1][0]);
-			
-			Response::json(200, $this -> $name, $this -> get_all_data());
+			$this -> name = str_replace('同学', '', $matches[1][0]);
+
+			Response::json(200, $this -> name, $this -> get_all_data());
 
 		} else {
 
 			$pattern = "/<script language='javascript' defer>alert\('(.*?)'\).*<\/script>/is";
 			preg_match_all($pattern, $result, $matches);
-			
+
 			Response::json(400, $matches[1][0]);
 
 		}
@@ -53,59 +53,59 @@ class DataHandler {
 				'3,4' => '',
 				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'tues' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'wed' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'thur' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'fri' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'sat' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
-			), 
+			),
 			'sun' => array(
-				'1,2' => '', 
-				'3,4' => '', 
-				'5,6' => '', 
+				'1,2' => '',
+				'3,4' => '',
+				'5,6' => '',
 				'7,8' => ''
 			)
 		);
-		
+
 		$week = array(
-			"mon" => "周一", 
-			"tues" => "周二", 
-			"wed" => "周三", 
-			"thur" => "周四", 
-			"fri" => "周五", 
-			"sat" => "周六", 
+			"mon" => "周一",
+			"tues" => "周二",
+			"wed" => "周三",
+			"thur" => "周四",
+			"fri" => "周五",
+			"sat" => "周六",
 			"sun" => "周日"
 		);
-		
+
 		$order = array('1,2', '3,4', '5,6', '7,8', '9,10', '9,10,11');
-		
+
 		foreach ($table as $key => $course) {
-			
+
 			foreach ($week as $key => $weekDay) {
 				$pos = strpos($course, $weekDay);
 				if ($pos) {
@@ -122,9 +122,9 @@ class DataHandler {
 					break;
 				}
 			}
-			
+
 			$list[$weekArrayDay][$weekArrayOrder] = $course;
-			
+
 		}
 
 		return $list;
@@ -248,13 +248,13 @@ class DataHandler {
 	}
 
 	function get_all_data() {
-		
+
 		$result = array(
 			'timetable' => $this -> timetable()
 		);
-		
+
 		return $result;
-		
+
 	}
 
 }

@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var Login = function() {
-			this.host = Config.host;
+			this.host = 'http://192.168.199.140/CoursePro_xhu/server/';
 		},
 		loginFn = Login.prototype;
 
@@ -47,9 +47,9 @@
 			psw = $.trim($('#password').val()),
 			captcha = $.trim($('#captcha input').val());
 
-		plus.nativeUI.showWaiting();
+		plus.nativeUI.showWaiting('正在登录');
 
-		M.ajax(_this.host + 'index.php?c=login', {
+		M.ajax(_this.host + '?c=login', {
 			data: {
 				user: user,
 				psw: psw,
@@ -59,8 +59,8 @@
 			type: 'post',
 			timeout: '15000', //15s
 			success: function(res) {
-				alert(JSON.stringify(res))
 				plus.nativeUI.closeWaiting();
+
 				if (res.code == 200) {
 					M.toast(res.message + '同学，登录成功！');
 					plus.storage.setItem('user', user);
@@ -85,7 +85,8 @@
 	}
 
 	loginFn.saveData = function(data) {
-		alert(JSON.stringify(data));
+		plus.storage.setItem('timetable', JSON.stringify(data.timetable));
+
 		M.openWindow({
 			url: 'main.html',
 			id: 'main',

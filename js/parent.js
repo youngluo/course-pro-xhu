@@ -21,7 +21,9 @@
 
 		var parent = plus.webview.currentWebview();
 		$.each(subPages, function(index, page) {
-			var sub = plus.webview.create(page, page.split('.')[0], subPageStyle);
+			var pageId = page.split('.')[0],
+				sub = plus.webview.create(page, pageId, subPageStyle);
+
 			sub.hide();
 			parent.append(sub);
 		});

@@ -7,13 +7,6 @@
 	M.plusReady(function() {
 		M('.mui-scroll-wrapper').scroll();
 
-		H.getData('get_all_data', function(res) {
-			res = JSON.parse(res);
-			if (res.code == 200) {
-				$('#timetable').html(template('timetable-tpl', res.data));
-			}
-		});
-
 		var mask = null;
 		M('#timetable').on('tap', '.course-active', function(e) {
 			if (!mask) {
@@ -28,7 +21,7 @@
 				mask: "rgba(0,0,0,.6)"
 			});
 
-			mask.innerText = $(this).text();
+			console.log(JSON.stringify(mask));
 		});
 	});
 
