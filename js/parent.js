@@ -1,6 +1,6 @@
 (function(M, $, win) {
 
-	var subPages = ['timetable.html'],
+	var subPages = ['timetable.html', 'credits.html', 'exam.html', 'score.html', 'trainPlan.html', 'failedCourse.html'],
 		activePage = null,
 		subPageStyle = {
 			top: '44px',

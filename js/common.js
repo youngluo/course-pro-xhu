@@ -1,7 +1,6 @@
 (function(M, $) {
 
 	var DataHandler = function() {
-		this.pages = ['timetable'];
 		this.renderData();
 	}
 
@@ -13,20 +12,25 @@
 	function getData(name) {
 		var data = plus.storage.getItem(name);
 		if (data) {
+			console.log(data)
 			return JSON.parse(data);
 		}
 	}
 
 	function renderData() {
 		var self = this;
-		self.pages.forEach(function(page) {
-			var container = $('#' + page);
-			if (!!container) {
+		var numKeys = plus.storage.getLength();
+		for (var i = 0; i < numKeys; i++) {
+			var page = plus.storage.key(i),
+				container = $('#' + page);
+				
+			if (container.length) {
 				container.html(template(page + '-tpl', {
-					timetable: self.getData(page)
+					page: self.getData(page)
 				}));
+				break;
 			}
-		});
+		}
 	}
 
 	M.plusReady(function() {

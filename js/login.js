@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var Login = function() {
-			this.host = 'http://192.168.199.140/CoursePro_xhu/server/';
+			this.host = 'http://192.168.0.150:9096/CoursePro_xhu/server/';
 		},
 		loginFn = Login.prototype;
 
@@ -19,9 +19,7 @@
 		this.getCaptcha();
 
 		M('#captcha').on('tap', 'img', this.getCaptcha.bind(this));
-		M('.mui-content-padded').on('tap', '#login', this.submit.bind(this));
-
-		this.back();
+		M('.mui-content-padded').on('tap', '#login', this.login.bind(this));
 	}
 
 	loginFn.getCaptcha = function() {
@@ -32,8 +30,6 @@
 		captcha.hide();
 		loading.show();
 		M.get(_this.host, function(res) {
-			console.log(res);
-
 			if (res) {
 				loading.hide();
 				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
@@ -41,13 +37,14 @@
 		});
 	}
 
-	loginFn.submit = function() {
+	loginFn.login = function() {
+
 		var _this = this,
 			user = $.trim($('#account').val()),
 			psw = $.trim($('#password').val()),
 			captcha = $.trim($('#captcha input').val());
 
-		plus.nativeUI.showWaiting('正在登录');
+		var waiting = plus.nativeUI.showWaiting('正在登录');
 
 		M.ajax(_this.host + '?c=login', {
 			data: {
@@ -57,16 +54,14 @@
 			},
 			dataType: 'json',
 			type: 'post',
-			timeout: '15000', //15s
+			timeout: '15000',
 			success: function(res) {
-				plus.nativeUI.closeWaiting();
-
 				if (res.code == 200) {
-					M.toast(res.message + '同学，登录成功！');
+					waiting.setTitle('正在导入数据');
 					plus.storage.setItem('user', user);
 					plus.storage.setItem('name', res.message);
 					_this.rememberPassword();
-					_this.saveData(res.data);
+					_this.getRemoteData(user, res.message);
 
 				} else if (res.code == 400) {
 					M.toast(res.message);
@@ -84,8 +79,27 @@
 		});
 	}
 
+	loginFn.getRemoteData = function(user, name) {
+		var _this = this;
+		
+		
+		M.getJSON(this.host, {
+			c: 'get_all_data',
+			user: user,
+			name: name
+		}, function(res) {
+			plus.nativeUI.closeWaiting();
+			if(res.code == 200){
+				M.toast(res.message);
+				_this.saveData(res.data);
+			}
+		});
+	}
+
 	loginFn.saveData = function(data) {
-		plus.storage.setItem('timetable', JSON.stringify(data.timetable));
+		for(var item in data){
+			plus.storage.setItem(item, JSON.stringify(data[item]));
+		}
 
 		M.openWindow({
 			url: 'main.html',
@@ -107,22 +121,6 @@
 				plus.storage.setItem('password', password);
 			}
 		}
-	}
-
-	loginFn.back = function() {
-		var backButtonPress = 0;
-		M.back = function(event) {
-			backButtonPress++;
-			if (backButtonPress > 1) {
-				plus.runtime.quit();
-			} else {
-				plus.nativeUI.toast('再按一次退出应用');
-			}
-			setTimeout(function() {
-				backButtonPress = 0;
-			}, 3000);
-			return false;
-		};
 	}
 
 	M.plusReady(function() {
