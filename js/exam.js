@@ -1,6 +1,12 @@
 (function(M, $) {
 
-	M('.mui-scroll-wrapper').scroll();
+	M.plusReady(function() {
+		var exam = dataHandler.getData('exam');
+
+		$('#exam').html(template('exam-tpl', {
+			data: exam
+		}));
+	});
 
 
 }(mui, Zepto));

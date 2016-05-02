@@ -11,7 +11,7 @@
 			.mui-content {
 				font-size: 14px;
 			}
-			
+
 			#course-head {
 				display: -webkit-flex;
 				display: flex;
@@ -22,35 +22,35 @@
 				text-align: center;
 				color: #03aa6c;
 			}
-			
+
 			.mui-scroll-wrapper {
 				top: 35px;
 				bottom: 50px;
 			}
-			
+
 			#course-lists {
 				padding: 10px;
 				font-size: 13px;
 				color: #8f8f94;
 				text-align: center;
 			}
-			
+
 			#course-lists > li {
 				border-bottom: solid 1px #dce1de;
 			}
-			
+
 			.course-list {
 				display: -webkit-flex;
 				display: flex;
 				padding: 15px 0;
 			}
-			
+
 			.course-list li,
 			#course-head li {
 				-webkit-flex: 1;
 				flex: 1;
 			}
-			
+
 			nav span {
 				display: table-cell;
 				overflow: hidden;
@@ -62,7 +62,7 @@
 				text-overflow: ellipsis;
 				color: #929292;
 			}
-			
+
 			.mui-bar {
 				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 				box-shadow: 0 0 1px rgba(0, 0, 0, .3);
@@ -77,10 +77,10 @@
 				<li>学分</li>
 			</ul>
 			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll" id="course">
-					<script id="course-tpl" type="text/html">
+				<div class="mui-scroll" id="train-plan">
+					<script id="train-plan-tpl" type="text/html">
 						<ul id="course-lists">
-							{{each msg as scoreList}}
+							{{each data as scoreList}}
 							<li>
 								<ul class="course-list">
 									{{each scoreList as item}}

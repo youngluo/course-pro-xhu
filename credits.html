@@ -11,29 +11,29 @@
 			.mui-content {
 				font-size: 14px;
 			}
-			
+
 			#course-lists {
 				padding: 10px;
 				font-size: 13px;
 				color: #8f8f94;
 				text-align: center;
 			}
-			
+
 			#course-lists > li {
 				border-bottom: solid 1px #dce1de;
 			}
-			
+
 			.course-list {
 				display: -webkit-flex;
 				display: flex;
 				padding: 15px 0;
 			}
-			
+
 			.course-list li {
 				-webkit-flex: 1;
 				flex: 1;
 			}
-			
+
 			nav span {
 				display: table-cell;
 				overflow: hidden;
@@ -45,7 +45,7 @@
 				text-overflow: ellipsis;
 				color: #929292;
 			}
-			
+
 			.mui-bar {
 				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 				box-shadow: 0 0 1px rgba(0, 0, 0, .3);
@@ -56,15 +56,14 @@
 	<body>
 		<div class="mui-content">
 			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll" id="course">
-					<script id="course-tpl" type="text/html">
+				<div class="mui-scroll" id="credits">
+					<script id="credits-tpl" type="text/html">
 						<ul id="course-lists">
-							{{each msg as scoreList}}
+							{{each data as credit type}}
 							<li>
 								<ul class="course-list">
-									{{each scoreList as item}}
-									<li>{{item}}</li>
-									{{/each}}
+									<li>{{type}}</li>
+									<li>{{credit}}</li>
 								</ul>
 							</li>
 							{{/each}}
@@ -73,6 +72,10 @@
 				</div>
 			</div>
 		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<span>当前所得学分：</span>
+			<span id="cur-credit"></span>
+		</nav>
 		<script src="vendor/mui.min.js"></script>
 		<script src="vendor/zepto.min.js"></script>
 		<script src="vendor/template.js"></script>

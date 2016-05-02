@@ -1,5 +1,11 @@
 (function(M, $) {
 
-	M('.mui-scroll-wrapper').scroll();
+	M.plusReady(function() {
+		var score = dataHandler.getData('score');
+
+		$('#score').html(template('score-tpl', {
+			data: score
+		}));
+	});
 
 }(mui, Zepto));

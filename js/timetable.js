@@ -5,7 +5,11 @@
 	$('#week li').eq(oDate.getDay()).addClass('active');
 
 	M.plusReady(function() {
-		M('.mui-scroll-wrapper').scroll();
+		var timetable = dataHandler.getData('timetable');
+
+		$('#timetable').html(template('timetable-tpl', {
+			data: timetable
+		}));
 
 		var mask = null;
 		M('#timetable').on('tap', '.course-active', function(e) {

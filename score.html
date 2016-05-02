@@ -11,7 +11,7 @@
 			.mui-content {
 				font-size: 14px;
 			}
-			
+
 			#score-head {
 				display: -webkit-flex;
 				display: flex;
@@ -22,48 +22,48 @@
 				text-align: center;
 				color: #03aa6c;
 			}
-			
+
 			#score-head li {
 				flex: 1;
 			}
-			
+
 			#score-head li:first-child {
 				flex: 2;
 			}
-			
+
 			#score-head li:nth-child(3) {
 				flex: 3;
 			}
-			
+
 			.mui-scroll-wrapper {
 				top: 35px;
 			}
-			
+
 			#score-lists {
 				padding: 10px;
 				font-size: 13px;
 				color: #8f8f94;
 				text-align: center;
 			}
-			
+
 			#score-lists > li {
 				border-bottom: solid 1px #dce1de;
 			}
-			
+
 			.score-list {
 				display: -webkit-flex;
 				display: flex;
 				padding: 15px 0;
 			}
-			
+
 			.score-list li:first-child {
 				flex: 2;
 			}
-			
+
 			.score-list li:nth-child(3) {
 				flex: 3;
 			}
-			
+
 			.score-list li {
 				flex: 1;
 			}
@@ -84,7 +84,7 @@
 				<div class="mui-scroll" id="score">
 					<script id="score-tpl" type="text/html">
 						<ul id="score-lists">
-							{{each score as scoreList}}
+							{{each data as scoreList}}
 							<li>
 								<ul class="score-list">
 									{{each scoreList as item}}

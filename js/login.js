@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	var Login = function() {
-			this.host = 'http://192.168.0.150:9096/CoursePro_xhu/server/';
+			this.host = 'http://192.168.199.140/CoursePro_xhu/server/';
 		},
 		loginFn = Login.prototype;
 
@@ -23,30 +23,30 @@
 	}
 
 	loginFn.getCaptcha = function() {
-		var _this = this,
+		var self = this,
 			captcha = $('#captcha img'),
 			loading = $('.mui-loading');
 
 		captcha.hide();
 		loading.show();
-		M.get(_this.host, function(res) {
+		M.get(self.host, function(res) {
 			if (res) {
 				loading.hide();
-				captcha.attr('src', _this.host + res + '?' + (+new Date())).show();
+				captcha.attr('src', self.host + res + '?' + (+new Date())).show();
 			}
 		});
 	}
 
 	loginFn.login = function() {
 
-		var _this = this,
+		var self = this,
 			user = $.trim($('#account').val()),
 			psw = $.trim($('#password').val()),
 			captcha = $.trim($('#captcha input').val());
 
 		var waiting = plus.nativeUI.showWaiting('正在登录');
 
-		M.ajax(_this.host + '?c=login', {
+		M.ajax(self.host + '?c=login', {
 			data: {
 				user: user,
 				psw: psw,
@@ -60,13 +60,14 @@
 					waiting.setTitle('正在导入数据');
 					plus.storage.setItem('user', user);
 					plus.storage.setItem('name', res.message);
-					_this.rememberPassword();
-					_this.getRemoteData(user, res.message);
+					self.rememberPassword();
+					self.getRemoteData(user, res.message);
 
 				} else if (res.code == 400) {
+					plus.nativeUI.closeWaiting();
 					M.toast(res.message);
 					setTimeout(function() {
-						_this.getCaptcha();
+						self.getCaptcha();
 					}, 1000);
 				}
 			},
@@ -80,18 +81,20 @@
 	}
 
 	loginFn.getRemoteData = function(user, name) {
-		var _this = this;
-		
-		
-		M.getJSON(this.host, {
+		var self = this;
+
+		M.getJSON(self.host, {
 			c: 'get_all_data',
 			user: user,
 			name: name
 		}, function(res) {
+//			console.log(res)
+//			return;
+
 			plus.nativeUI.closeWaiting();
 			if(res.code == 200){
 				M.toast(res.message);
-				_this.saveData(res.data);
+				self.saveData(res.data);
 			}
 		});
 	}
