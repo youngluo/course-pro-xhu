@@ -268,6 +268,10 @@ class DataHandler {
 			$item = $arr[$i];
 			$type = $item[0];
 
+			if ($type == '发展基础课程群选修') {
+				$type = '发展基础课程群必修';
+			}
+
 			if (isset($new_arr[$type])) {
 				$new_arr[$type] += $item[1];
 			} else {

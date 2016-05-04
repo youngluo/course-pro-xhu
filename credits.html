@@ -12,6 +12,22 @@
 				font-size: 14px;
 			}
 
+			#course-head {
+				display: -webkit-flex;
+				display: flex;
+				height: 35px;
+				line-height: 35px;
+				padding: 0 10px;
+				box-shadow: 1px 1px 1px #dce1de;
+				text-align: center;
+				color: #03aa6c;
+			}
+
+			.mui-scroll-wrapper {
+				top: 35px;
+				bottom: 50px;
+			}
+
 			#course-lists {
 				padding: 10px;
 				font-size: 13px;
@@ -29,7 +45,8 @@
 				padding: 15px 0;
 			}
 
-			.course-list li {
+			.course-list li,
+			#course-head li {
 				-webkit-flex: 1;
 				flex: 1;
 			}
@@ -50,11 +67,35 @@
 				-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 				box-shadow: 0 0 1px rgba(0, 0, 0, .3);
 			}
+
+			.course-list li {
+				position: relative;
+			}
+
+			.course-list li strong {
+				position: absolute;
+				top: 0;
+				right: 15%;
+				padding: 0;
+			}
+
+			.insufficient {
+				color: #dd524d;
+				padding: 5px;
+			}
+
+			.beyond {
+				color: #f0ad4e;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="mui-content">
+			<ul id="course-head">
+				<li>课程性质</li>
+				<li>已修学分</li>
+			</ul>
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll" id="credits">
 					<script id="credits-tpl" type="text/html">
@@ -73,7 +114,7 @@
 			</div>
 		</div>
 		<nav class="mui-bar mui-bar-tab">
-			<span>当前所得学分：</span>
+			<span>当前所修学分总计：</span>
 			<span id="cur-credit"></span>
 		</nav>
 		<script src="vendor/mui.min.js"></script>

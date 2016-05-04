@@ -83,16 +83,21 @@
 	loginFn.getRemoteData = function(user, name) {
 		var self = this;
 
-		M.getJSON(self.host, {
+		M.get(self.host, {
 			c: 'get_all_data',
 			user: user,
 			name: name
 		}, function(res) {
-//			console.log(res)
-//			return;
-
 			plus.nativeUI.closeWaiting();
-			if(res.code == 200){
+
+			try {
+				res = JSON.parse(res);
+			} catch (e) {
+				M.toast('信息抓取失败，请稍候再试！');
+				return false;
+			}
+
+			if (res.code == 200) {
 				M.toast(res.message);
 				self.saveData(res.data);
 			}
@@ -100,7 +105,7 @@
 	}
 
 	loginFn.saveData = function(data) {
-		for(var item in data){
+		for (var item in data) {
 			plus.storage.setItem(item, JSON.stringify(data[item]));
 		}
 
