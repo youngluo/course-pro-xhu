@@ -94,6 +94,7 @@
 				res = JSON.parse(res);
 			} catch (e) {
 				M.toast('信息抓取失败，请稍候再试！');
+				console.log(res);
 				return false;
 			}
 

@@ -215,7 +215,7 @@ class DataHandler {
 		$result = $this -> dataProvider -> get_exam($this -> user, $this -> name);
 
 		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $original_data);
-		$save_key = array('1', '2', '3', '4', '5', '6');
+		$save_key = array('1', '2', '3', '4', '6');
 
 		return $this -> get_course_data($original_data[0][0], $save_key);
 
@@ -252,7 +252,7 @@ class DataHandler {
 		$result = $this -> dataProvider -> get_credits($this -> user, $this -> name);
 
 		preg_match_all('/<table class="datelist"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $original_data);
-		$save_key = array('2', '3');
+		$save_key = array('2', '3', '4');
 		$credits = $this -> get_course_data($original_data[0][0], $save_key);
 
 		return $this -> merge($credits);
@@ -266,19 +266,22 @@ class DataHandler {
 
 		for ($i = 1; $i <= $arr_length; $i++) {
 			$item = $arr[$i];
-			$type = $item[0];
 
-			if ($type == '发展基础课程群选修') {
-				$type = '发展基础课程群必修';
+			if ($item[2] >= 60) {
+				$type = $item[0];
+
+				if ($type == '发展基础课程群选修') {
+					$type = '发展基础课程群必修';
+				}
+
+				if (isset($new_arr[$type])) {
+					$new_arr[$type] += $item[1];
+				} else {
+					$new_arr[$type] = $item[1];
+				}
+
+				$total += $item[1];
 			}
-
-			if (isset($new_arr[$type])) {
-				$new_arr[$type] += $item[1];
-			} else {
-				$new_arr[$type] = $item[1];
-			}
-
-			$total += $item[1];
 		}
 
 		return array(
