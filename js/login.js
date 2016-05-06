@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	function Login() {
-		this.host = 'http://192.168.0.146:9096/CoursePro_xhu/server/';
+		this.host = 'http://192.168.199.140/CoursePro_xhu/server/';
 		this.init();
 	};
 
@@ -24,6 +24,8 @@
 
 		//获取验证码及cookie
 		this.getCaptcha();
+
+		this.rememberPassword();
 
 		M('#captcha').on('tap', 'img', this.getCaptcha.bind(this));
 		M('.mui-content-padded').on('tap', '#login', this.login.bind(this));
@@ -67,7 +69,6 @@
 					waiting.setTitle('正在导入数据');
 					plus.storage.setItem('user', user);
 					plus.storage.setItem('name', res.message);
-					self.rememberPassword();
 					self.getRemoteData(user, res.message);
 
 				} else if (res.code == 400) {
@@ -130,12 +131,12 @@
 	}
 
 	function rememberPassword() {
-		if ($('.mui-switch').hasClass('mui-active')) {
+		M('#rememberPassword').on('change', 'input', function() {
 			var password = $.trim($('#password').val());
-			if (password) {
+			if (this.checked && password) {
 				plus.storage.setItem('password', password);
 			}
-		}
+		});
 	}
 
 	M.plusReady(function() {

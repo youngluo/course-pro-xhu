@@ -7,25 +7,40 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<style>
+			.mui-bar-nav {
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}
+
+			.mui-bar-nav:after {
+				content: '';
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 1px;
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+
 			.mui-input-group {
-				margin-top: 10px;
+				font-size: 15px;
 			}
 
-			.mui-input-group:first-child {
-				margin-top: 20px;
-			}
-
-			.mui-input-group label {
-				width: 22%;
+			#login-form label {
+				width: 25%;
 			}
 
 			.mui-input-row label~input {
-				width: 78%;
+				width: 75%;
+				padding-right: 30px;
 			}
 
 			#captcha input {
 				float: left;
-				width: 40%;
+				width: 35%;
+				padding-right: 0;
 			}
 
 			#captcha > div {
@@ -47,12 +62,54 @@
 				margin-top: 8px;
 			}
 
-			.mui-content-padded {
-				margin-top: 25px;
-			}
-
 			.mui-btn {
 				padding: 10px;
+			}
+
+			.mui-checkbox input[type=checkbox] {
+				top: 5px;
+				width: 26px;
+				height: 26px;
+			}
+
+			.mui-checkbox input[type=checkbox]:before {
+				font-size: 26px;
+			}
+
+			.mui-checkbox input[type=checkbox]:checked:before {
+				color: #03aa6c;
+			}
+
+			.mui-input-group,
+			.mui-input-group:before,
+			#rememberPassword .mui-input-row:after,
+			.mui-input-group:after {
+				background-color: transparent;
+			}
+
+			.mui-input-group .mui-input-row:after{
+				left: 0;
+			}
+
+			#rememberPassword {
+				margin-top: 10px;
+				text-align: right;
+			}
+
+			#rememberPassword .mui-input-row {
+				display: inline-block;
+				font-size: 14px;
+			}
+
+			.mui-btn-success {
+				border: 1px solid #03aa6c;
+				background-color: #03aa6c;
+			}
+
+			.mui-btn-success.mui-active:enabled,
+			.mui-btn-success:enabled:active {
+				border: 1px solid #039d64;
+				background-color: #039d64
 			}
 		</style>
 
@@ -62,7 +119,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title">登录教务系统</h1>
 		</header>
-		<div class="mui-content">
+		<div class="mui-content mui-content-padded">
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label>学号</label>
@@ -84,17 +141,13 @@
 				</div>
 			</form>
 
-			<form class="mui-input-group">
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li id="rememberPsw" class="mui-table-view-cell">
-						记住密码
-						<div class="mui-switch">
-							<div class="mui-switch-handle"></div>
-						</div>
-					</li>
-				</ul>
+			<form class="mui-input-group" id="rememberPassword">
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>记住学号和密码</label>
+					<input type="checkbox">
+				</div>
 			</form>
-			<div class="mui-content-padded">
+			<div>
 				<button id='login' class="mui-btn mui-btn-block mui-btn-success">登录</button>
 			</div>
 		</div>

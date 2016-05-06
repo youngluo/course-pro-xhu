@@ -6,16 +6,42 @@
 		}
 	});
 
+	template.config('escape', false);
+
+	window.addEventListener('update', function(e) {
+		if (e.detail.update) {
+			renderData();
+		}
+	});
+
 	M.plusReady(function() {
 		M.preload({
 			id: 'credits-popover',
 			url: 'credits-popover.html',
 			styles: {
-				top: 0,
-				bottom: 0,
+				width: '100%',
+				heigh: '100%',
 				background: 'transparent'
 			}
 		});
+
+		renderData();
+
+		var creditsPopover = null;
+		M('#credits').on('longtap', '.course-list', function() {
+			var $this = $(this);
+
+			if (!creditsPopover) {
+				creditsPopover = plus.webview.getWebviewById('credits-popover');
+			}
+
+			M.fire(creditsPopover, 'getType', {
+				type: $this.find('li:first-child').text()
+			});
+		});
+	});
+
+	function renderData() {
 		var credits = dataHandler.getData('credits'),
 			trainPlan = dataHandler.getData('trainPlan'),
 			creditsContent = credits.content;
@@ -31,26 +57,11 @@
 
 		});
 
-		template.config('escape', false);
-
 		$('#credits').html(template('credits-tpl', {
 			data: creditsContent
 		}));
 
 		$('#cur-credit').text(credits.total);
-
-		var creditsPopover = null;
-		M('#course-lists').on('longtap', '.course-list', function() {
-			var $this = $(this);
-
-			if (!creditsPopover) {
-				creditsPopover = plus.webview.getWebviewById('credits-popover');
-			}
-
-			M.fire(creditsPopover, 'getType', {
-				type: $this.find('li:first-child').text()
-			});
-		});
-	});
+	}
 
 }(mui, Zepto));

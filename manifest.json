@@ -323,7 +323,10 @@
 					"js/credits.js",
 					"js/common.js",
 					"css/common.css",
-					"vendor/template.js"
+					"vendor/template.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css"
 				],
 				"refer": [
 					"credits-popover.html"
@@ -335,7 +338,10 @@
 					"js/common.js",
 					"vendor/template.js",
 					"js/trainPlan.js",
-					"css/common.css"
+					"css/common.css",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -345,7 +351,10 @@
 					"js/failedCourse.js",
 					"js/common.js",
 					"css/common.css",
-					"vendor/template.js"
+					"vendor/template.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0

@@ -1,6 +1,14 @@
 (function(M, $) {
 
-	M.plusReady(function() {
+	window.addEventListener('update', function(e) {
+		if (e.detail.update) {
+			renderData();
+		}
+	});
+
+	M.plusReady(renderData);
+
+	function renderData() {
 		var trainPlan = dataHandler.getData('trainPlan');
 
 		$('#train-plan').html(template('train-plan-tpl', {
@@ -8,6 +16,6 @@
 		}));
 
 		$('#totalCredit').text(trainPlan.totalCredit);
-	});
+	}
 
 }(mui, Zepto));
