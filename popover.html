@@ -13,9 +13,9 @@
 		body,
 		.mui-content {
 			height: 100%;
-			background: transparent;
+			background-color: transparent;
 		}
-
+		
 		ul {
 			width: 170px;
 			margin-top: 44px;
@@ -25,11 +25,11 @@
 			background-color: #03aa6c;
 			color: #fff;
 		}
-
+		
 		.mui-table-view-cell>a:not(.mui-btn).mui-active {
 			background-color: #039d64;
 		}
-
+		
 		.mui-table-view-cell:after {
 			left: 0;
 			background-color: #039d64;
@@ -39,17 +39,26 @@
 	<body>
 		<div class="mui-content">
 			<ul class="mui-pull-right">
-				<li class="mui-table-view-cell"><a href="#">重新导入数据</a></li>
+				<li class="mui-table-view-cell"><a href="">重新导入数据</a></li>
 				<li class="mui-table-view-cell"><a href="#">帮助与反馈</a></li>
 			</ul>
 		</div>
 		<script type="text/javascript" src="vendor/mui.min.js"></script>
+		<script type="text/javascript" src="vendor/zepto.min.js"></script>
 		<script>
 			(function(M) {
 				M.plusReady(function() {
-					M('html').on('tap', 'body', function(e) {
-						if (e.target.tagName.toLowerCase() !== 'a') {
-							plus.webview.currentWebview().hide();
+					M('body').on('tap', '.mui-content', function(e) {
+						plus.webview.currentWebview().hide();
+						if (e.target.tagName.toLowerCase() == 'a') {
+							M.openWindow({
+								id: 'index',
+								url: 'index.html',
+								createNew: true,
+								waiting: {
+									autoShow: false
+								}
+							});
 						}
 					});
 				});

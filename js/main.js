@@ -1,5 +1,4 @@
 (function(M, $, win) {
-
 	var padding = ($(win).height() - $('#main').height()) / 8;
 
 	$('.mui-table-view.mui-grid-view .mui-table-view-cell').css({
@@ -16,7 +15,7 @@
 				bottom: 0
 			}
 		});
-
+		
 		var parentPage = null;
 
 		M('#main').on('tap', 'li', function(e) {

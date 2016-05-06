@@ -9,6 +9,7 @@
 		popover = null;
 
 	M.plusReady(function() {
+
 		M.preload({
 			id: 'popover',
 			url: 'popover.html',

@@ -87,21 +87,13 @@
         "Maps": {
             "description": "管理地图插件"
         },
-        "Payment": {
-            "description": "管理支付插件"
-        },
-        "Push": {
-            "description": "管理推送消息插件"
-        },
-        "Share": {
-            "description": "管理社交分享插件"
-        },
+        
+        
+        
         "Speech": {
             "description": "管理语音识别插件"
         },
-        "Statistic": {
-            "description": "管理统计插件"
-        },"Webview":{},"NativeUI":{},"Navigator":{}
+        "Webview":{},"NativeUI":{},"Navigator":{}
     },
     "plus": {
         "splashscreen": {
@@ -279,7 +271,11 @@
 					"score.html"
 				],
 				"refer": [
-					"popover.html"
+					"popover.html",
+					"exam.html",
+					"credits.html",
+					"trainPlan.html",
+					"failedCourse.html"
 				],
 				"priority": 0
 			},
@@ -300,7 +296,56 @@
 				"resources": [
 					"css/mui.min.css",
 					"fonts/mui.ttf",
-					"vendor/mui.min.js"
+					"vendor/mui.min.js",
+					"vendor/zepto.min.js",
+					"css/common.css"
+				],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"exam.html": {
+				"resources": [
+					"js/exam.js",
+					"js/common.js",
+					"css/common.css",
+					"vendor/template.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"credits.html": {
+				"resources": [
+					"js/credits.js",
+					"js/common.js",
+					"css/common.css",
+					"vendor/template.js"
+				],
+				"refer": [
+					"credits-popover.html"
+				],
+				"priority": 0
+			},
+			"trainPlan.html": {
+				"resources": [
+					"js/common.js",
+					"vendor/template.js",
+					"js/trainPlan.js",
+					"css/common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"failedCourse.html": {
+				"resources": [
+					"js/failedCourse.js",
+					"js/common.js",
+					"css/common.css",
+					"vendor/template.js"
 				],
 				"refer": [],
 				"priority": 0

@@ -1,95 +1,22 @@
 {
-<<<<<<< HEAD
-  "index.html": {
-    "resources": [
-      "js/common.js",
-      "js/mui.min.js",
-      "js/zepto.min.js",
-      "js/login.js",
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "img/logo.png",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js"
-    ],
-    "refer": [
-      "main.html"
-    ]
-  },
-  "main.html": {
-    "resources": [
-      "js/main.js",
-      "img/logo.png",
-      "js/common.js",
-      "js/mui.min.js",
-      "js/zepto.min.js",
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js"
-    ],
-    "refer": [
-      "timetable.html",
-      "parent.html"
-    ]
-  },
-  "timetable.html": {
-    "resources": [
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/timetable.js",
-      "js/zepto.min.js",
-      "js/common.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "vendor/template.js"
-    ],
-    "refer": [
-      "mask.html"
-    ]
-  },
-  "parent.html": {
-    "resources": [
-      "js/common.js",
-      "js/mui.min.js",
-      "js/zepto.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/parent.js",
-      "timetable.html",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "score.html"
-    ],
-    "refer": [
-      "timetable.html",
-      "score.html"
-    ]
-  },
-  "score.html": {
-    "resources": [
-      "js/score.js",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "js/common.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css",
-      "css/common.css"
-    ]
-  }
-=======
+	"popover.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
 	"index.html": {
 		"resources": [
-			"js/common.js",
-			"js/mui.min.js",
-			"js/zepto.min.js",
 			"js/login.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"img/logo.png",
 			"vendor/zepto.min.js",
-			"vendor/mui.min.js"
+			"vendor/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf"
 		],
 		"refer": [
 			"main.html"
@@ -98,74 +25,89 @@
 	"main.html": {
 		"resources": [
 			"js/main.js",
-			"img/logo.png",
-			"js/common.js",
-			"js/mui.min.js",
-			"js/zepto.min.js",
-			"css/mui.min.css",
-			"fonts/mui.ttf",
 			"vendor/zepto.min.js",
-			"vendor/mui.min.js"
+			"vendor/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		],
 		"refer": [
-			"timetable.html",
-			"parent.html",
-			"popover.html"
+			"parent.html"
+		]
+	},
+	"exam.html": {
+		"resources": [
+			"js/exam.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"credits.html": {
+		"resources": [
+			"js/credits.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js"
+		],
+		"refer": [
+			"credits-popover.html"
 		]
 	},
 	"timetable.html": {
 		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
 			"js/timetable.js",
-			"js/zepto.min.js",
 			"js/common.js",
+			"vendor/template.js",
 			"vendor/zepto.min.js",
 			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		]
+	},
+	"trainPlan.html": {
+		"resources": [
+			"js/common.js",
 			"vendor/template.js",
+			"js/trainPlan.js",
 			"css/common.css"
-		],
-		"refer": [
-			"mask.html"
 		]
 	},
 	"parent.html": {
 		"resources": [
-			"js/common.js",
-			"js/mui.min.js",
-			"js/zepto.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/parent.js",
 			"timetable.html",
+			"js/parent.js",
 			"vendor/zepto.min.js",
 			"vendor/mui.min.js",
-			"score.html"
+			"fonts/mui.ttf",
+			"css/mui.min.css"
 		],
 		"refer": [
+			"exam.html",
+			"popover.html",
+			"credits.html",
 			"timetable.html",
-			"score.html",
-			"popover.html"
+			"trainPlan.html",
+			"failedCourse.html",
+			"score.html"
+		]
+	},
+	"failedCourse.html": {
+		"resources": [
+			"js/failedCourse.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js"
 		]
 	},
 	"score.html": {
 		"resources": [
 			"js/score.js",
-			"vendor/template.js",
-			"vendor/zepto.min.js",
 			"js/common.js",
-			"vendor/mui.min.js",
-			"css/mui.min.css",
-			"css/common.css"
-		]
-	},
-	"popover.html": {
-		"resources": [
-			"css/mui.min.css",
-			"fonts/mui.ttf",
-			"vendor/mui.min.js"
+			"css/common.css",
+			"vendor/template.js"
 		]
 	}
->>>>>>> 4e7b09b6eaffdb174f62deaa09bd9560331c7ebc
 }

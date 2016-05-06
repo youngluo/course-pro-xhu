@@ -1,13 +1,20 @@
 (function(M, $) {
 
-	var Login = function() {
-			this.host = 'http://192.168.199.140/CoursePro_xhu/server/';
-		},
-		loginFn = Login.prototype;
+	function Login() {
+		this.host = 'http://192.168.0.146:9096/CoursePro_xhu/server/';
+		this.init();
+	};
 
-	loginFn.init = function() {
-		M.init();
+	$.extend(Login.prototype, {
+		init: init,
+		getCaptcha: getCaptcha,
+		login: login,
+		getRemoteData: getRemoteData,
+		saveData: saveData,
+		rememberPassword: rememberPassword
+	});
 
+	function init() {
 		//填充学号、密码
 		var user = plus.storage.getItem('user'),
 			psw = plus.storage.getItem('password');
@@ -22,7 +29,7 @@
 		M('.mui-content-padded').on('tap', '#login', this.login.bind(this));
 	}
 
-	loginFn.getCaptcha = function() {
+	function getCaptcha() {
 		var self = this,
 			captcha = $('#captcha img'),
 			loading = $('.mui-loading');
@@ -37,7 +44,7 @@
 		});
 	}
 
-	loginFn.login = function() {
+	function login() {
 
 		var self = this,
 			user = $.trim($('#account').val()),
@@ -80,7 +87,7 @@
 		});
 	}
 
-	loginFn.getRemoteData = function(user, name) {
+	function getRemoteData(user, name) {
 		var self = this;
 
 		M.get(self.host, {
@@ -89,7 +96,7 @@
 			name: name
 		}, function(res) {
 			plus.nativeUI.closeWaiting();
-
+			console.log(res)
 			try {
 				res = JSON.parse(res);
 			} catch (e) {
@@ -105,25 +112,24 @@
 		});
 	}
 
-	loginFn.saveData = function(data) {
+	function saveData(data) {
 		for (var item in data) {
 			plus.storage.setItem(item, JSON.stringify(data[item]));
+			M.fire(plus.webview.getWebviewById(item), 'update', {
+				update: true
+			});
 		}
 
 		M.openWindow({
 			url: 'main.html',
 			id: 'main',
-			styles: {
-				top: 0,
-				bottom: 0
-			},
 			waiting: {
 				autoShow: false
 			}
 		});
 	}
 
-	loginFn.rememberPassword = function() {
+	function rememberPassword() {
 		if ($('.mui-switch').hasClass('mui-active')) {
 			var password = $.trim($('#password').val());
 			if (password) {
@@ -133,7 +139,7 @@
 	}
 
 	M.plusReady(function() {
-		new Login().init();
+		new Login();
 	});
 
 }(mui, Zepto));
