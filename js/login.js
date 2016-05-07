@@ -39,10 +39,20 @@
 		captcha.hide();
 		$('#captcha input').val('');
 		loading.show();
-		M.get(self.host, function(res) {
-			if (res) {
+		M.ajax(self.host, {
+			timeout: '20000',
+			success: function(res) {
+				if (res) {
+					loading.hide();
+					captcha.attr('src', self.host + res + '?' + (+new Date())).show();
+				}
+			},
+			error: function(xhr, type, error) {
 				loading.hide();
-				captcha.attr('src', self.host + res + '?' + (+new Date())).show();
+				captcha.show();
+				if (type == 'timeout') {
+					M.toast('验证码请求超时！');
+				}
 			}
 		});
 	}
@@ -64,7 +74,7 @@
 			},
 			dataType: 'json',
 			type: 'post',
-			timeout: '15000',
+			timeout: '20000',
 			success: function(res) {
 				if (res.code == 200) {
 					waiting.setTitle('正在导入数据');
