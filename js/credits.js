@@ -30,7 +30,6 @@
 		var creditsPopover = null;
 		M('#credits').on('longtap', '.course-list', function() {
 			var $this = $(this);
-
 			if (!creditsPopover) {
 				creditsPopover = plus.webview.getWebviewById('credits-popover');
 			}

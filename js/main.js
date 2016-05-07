@@ -7,6 +7,7 @@
 	});
 
 	M.plusReady(function() {
+		//plus.webview.currentWebview().hide();
 		M.preload({
 			id: 'parent',
 			url: 'parent.html',
@@ -15,7 +16,7 @@
 				bottom: 0
 			}
 		});
-		
+
 		var parentPage = null;
 
 		M('#main').on('tap', 'li', function(e) {

@@ -37,6 +37,7 @@
 			loading = $('.mui-loading');
 
 		captcha.hide();
+		$('#captcha input').val('');
 		loading.show();
 		M.get(self.host, function(res) {
 			if (res) {
@@ -97,7 +98,6 @@
 			name: name
 		}, function(res) {
 			plus.nativeUI.closeWaiting();
-			console.log(res)
 			try {
 				res = JSON.parse(res);
 			} catch (e) {

@@ -1,6 +1,6 @@
 (function(M, $, win) {
 
-	var subPages = ['timetable.html', 'credits.html', 'exam.html', 'score.html', 'trainPlan.html', 'failedCourse.html'],
+	var subPages = ['timetable.html', 'credits.html', 'exam.html', 'score.html', 'train-plan.html', 'failed-course.html'],
 		activePage = null,
 		subPageStyle = {
 			top: '44px',
@@ -22,7 +22,7 @@
 
 		var parent = plus.webview.currentWebview();
 		$.each(subPages, function(index, page) {
-			var pageId = page.split('.')[0],
+			var pageId = camelConversion(page.split('.')[0]),
 				sub = plus.webview.create(page, pageId, subPageStyle);
 
 			sub.hide();
@@ -31,7 +31,7 @@
 
 		win.addEventListener('getTitle', function(e) {
 			$('#title').text(e.detail.title);
-			var targetPage = e.detail.id;
+			var targetPage = camelConversion(e.detail.id);
 			if (targetPage != activePage) {
 				plus.webview.hide(activePage);
 				plus.webview.show(targetPage);
@@ -47,5 +47,18 @@
 			popoverPage.show();
 		});
 	});
+
+	function camelConversion(id) {
+		if (id.indexOf('-') > -1) {
+			return id
+				.replace(/-(.{1}?)/g, function(v) {
+					return v.toUpperCase();
+				})
+				.split('-')
+				.join('');
+		}
+
+		return id;
+	}
 
 }(mui, Zepto, window));

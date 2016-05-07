@@ -4,7 +4,22 @@
 	$('#month').text(oDate.getMonth() + 1 + '月');
 	$('#week li').eq(oDate.getDay()).addClass('active');
 
-	M.plusReady(renderData);
+	M.plusReady(function() {
+		M.preload({
+			id: 'timetable-detail',
+			url: 'timetable-detail.html',
+		});
+
+		renderData();
+
+		M('#timetable').on('tap', '.course-active', function(){
+			var $this = $(this);
+			M.fire(plus.webview.getWebviewById('timetable-detail'), 'getCourse', {
+				course: $this.text()
+			});
+		});
+
+	});
 
 	window.addEventListener('update', function(e) {
 		if (e.detail.update) {
