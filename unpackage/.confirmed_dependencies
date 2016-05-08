@@ -1,177 +1,234 @@
 {
-  "popover.html": {
-    "resources": [
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/common.css",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "index.html"
-    ]
-  },
-  "index.html": {
-    "resources": [
-      "js/login.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css",
-      "fonts/mui.ttf"
-    ],
-    "refer": [
-      "main.html"
-    ]
-  },
-  "main.html": {
-    "resources": [
-      "js/main.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "parent.html"
-    ]
-  },
-  "exam.html": {
-    "resources": [
-      "js/exam.js",
-      "js/common.js",
-      "css/common.css",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css"
-    ],
-    "refer": []
-  },
-  "credits.html": {
-    "resources": [
-      "js/credits.js",
-      "js/common.js",
-      "css/common.css",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "credits-popover.html"
-    ]
-  },
-  "timetable.html": {
-    "resources": [
-      "js/timetable.js",
-      "js/common.js",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/common.css",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "timetable-popover.html",
-      "timetable-detail.html"
-    ]
-  },
-  "trainPlan.html": {
-    "resources": [
-      "js/common.js",
-      "vendor/template.js",
-      "js/trainPlan.js",
-      "css/common.css",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css"
-    ],
-    "refer": []
-  },
-  "parent.html": {
-    "resources": [
-      "timetable.html",
-      "js/parent.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "exam.html",
-      "popover.html",
-      "credits.html",
-      "timetable.html",
-      "trainPlan.html",
-      "failedCourse.html",
-      "score.html",
-      "failed-course.html",
-      "train-plan.html"
-    ]
-  },
-  "failedCourse.html": {
-    "resources": [
-      "js/failedCourse.js",
-      "js/common.js",
-      "css/common.css",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css",
-      "js/failed-course.js"
-    ],
-    "refer": []
-  },
-  "score.html": {
-    "resources": [
-      "js/score.js",
-      "js/common.js",
-      "css/common.css",
-      "vendor/template.js",
-      "vendor/zepto.min.js",
-      "vendor/mui.min.js",
-      "css/mui.min.css"
-    ],
-    "refer": []
-  },
-  "timetable-popover.html": {
-    "resources": [
-      "vendor/zepto.min.js",
-      "js/common.js",
-      "vendor/mui.min.js",
-      "css/common.css",
-      "css/mui.min.css"
-    ],
-    "refer": []
-  },
-  "timetable-detail.html": {
-    "resources": [
-      "vendor/zepto.min.js",
-      "js/common.js",
-      "vendor/mui.min.js",
-      "css/common.css",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/timetable-detail.js",
-      "vendor/template.js"
-    ],
-    "refer": []
-  },
-  "failed-course.html": {
-    "resources": [
-      "js/failed-course.js",
-      "js/common.js",
-      "css/common.css",
-      "vendor/template.js"
-    ],
-    "refer": []
-  },
-  "train-plan.html": {
-    "resources": [
-      "js/trainPlan.js",
-      "js/common.js",
-      "vendor/template.js",
-      "css/common.css"
-    ],
-    "refer": []
-  }
+	"popover.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"js/popover.js",
+			"css/popover.css",
+			"feedback.html",
+			"js/common.js"
+		],
+		"refer": [
+			"index.html",
+			"login.html",
+			"feedback.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/login.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"main.html"
+		]
+	},
+	"main.html": {
+		"resources": [
+			"js/main.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/main.css"
+		],
+		"refer": [
+			"parent.html"
+		]
+	},
+	"exam.html": {
+		"resources": [
+			"js/exam.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"credits.html": {
+		"resources": [
+			"js/credits.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"credits-popover.html"
+		]
+	},
+	"timetable.html": {
+		"resources": [
+			"js/timetable.js",
+			"js/common.js",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"timetable-popover.html",
+			"timetable-detail.html"
+		]
+	},
+	"trainPlan.html": {
+		"resources": [
+			"js/common.js",
+			"vendor/template.js",
+			"js/trainPlan.js",
+			"css/common.css",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"parent.html": {
+		"resources": [
+			"timetable.html",
+			"js/parent.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/parent.css",
+			"js/common.js"
+		],
+		"refer": [
+			"exam.html",
+			"popover.html",
+			"credits.html",
+			"timetable.html",
+			"trainPlan.html",
+			"failedCourse.html",
+			"score.html",
+			"failed-course.html",
+			"train-plan.html"
+		]
+	},
+	"failedCourse.html": {
+		"resources": [
+			"js/failedCourse.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css",
+			"js/failed-course.js"
+		],
+		"refer": []
+	},
+	"score.html": {
+		"resources": [
+			"js/score.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"timetable-popover.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"js/common.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"timetable-detail.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"js/common.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/timetable-detail.js",
+			"vendor/template.js",
+			"css/timetable-detail.css"
+		],
+		"refer": []
+	},
+	"failed-course.html": {
+		"resources": [
+			"js/failed-course.js",
+			"js/common.js",
+			"css/common.css",
+			"vendor/template.js",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": []
+	},
+	"train-plan.html": {
+		"resources": [
+			"js/trainPlan.js",
+			"js/common.js",
+			"vendor/template.js",
+			"css/common.css",
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/mui.min.css",
+			"js/train-plan.js"
+		],
+		"refer": []
+	},
+	"credits-popover.html": {
+		"resources": [
+			"css/credits-popover.css",
+			"js/credits-popover.js",
+			"vendor/zepto.min.js",
+			"js/common.js",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"vendor/mui.min.js",
+			"css/login.css",
+			"fonts/mui.ttf",
+			"js/login.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"main.html"
+		]
+	},
+	"feedback.html": {
+		"resources": [
+			"vendor/zepto.min.js",
+			"css/feedback.css",
+			"js/common.js",
+			"js/feedback.js",
+			"popover.html",
+			"vendor/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"popover.html"
+		]
+	}
 }

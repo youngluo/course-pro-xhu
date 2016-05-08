@@ -150,6 +150,11 @@
 	}
 
 	M.plusReady(function() {
+		var currentWebview = plus.webview.currentWebview();
+		if(currentWebview.showBack){
+			$('#back').show();
+		}
+
 		new Login();
 	});
 

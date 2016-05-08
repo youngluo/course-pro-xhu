@@ -1,0 +1,113 @@
+.mui-bar-nav {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.mui-bar-nav:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 1px;
+	-webkit-transform: scaleY(.5);
+	transform: scaleY(.5);
+	background-color: #c8c7cc;
+}
+
+a {
+	color: #03aa6c;
+}
+
+#back {
+	display: none;
+}
+
+.mui-input-group {
+	font-size: 15px;
+}
+
+#login-form label {
+	width: 25%;
+}
+
+.mui-input-row label~input {
+	width: 75%;
+	padding-right: 30px;
+}
+
+#captcha input {
+	float: left;
+	width: 35%;
+	padding-right: 0;
+}
+
+#captcha > div {
+	float: left;
+	width: 107px;
+	height: 100%;
+}
+
+#captcha > div img {
+	display: none;
+	height: 100%;
+}
+
+.mui-loading {
+	display: none;
+}
+
+.mui-loading .mui-spinner {
+	margin-top: 8px;
+}
+
+.mui-btn {
+	padding: 10px;
+}
+
+.mui-checkbox input[type=checkbox] {
+	top: 5px;
+	width: 26px;
+	height: 26px;
+}
+
+.mui-checkbox input[type=checkbox]:before {
+	font-size: 26px;
+}
+
+.mui-checkbox input[type=checkbox]:checked:before {
+	color: #03aa6c;
+}
+
+.mui-input-group,
+.mui-input-group:before,
+#rememberPassword .mui-input-row:after,
+.mui-input-group:after {
+	background-color: transparent;
+}
+
+.mui-input-group .mui-input-row:after {
+	left: 0;
+}
+
+#rememberPassword {
+	margin-top: 10px;
+	text-align: right;
+}
+
+#rememberPassword .mui-input-row {
+	display: inline-block;
+	font-size: 14px;
+}
+
+.mui-btn-success {
+	margin-top: 10px;
+	border: 1px solid #03aa6c;
+	background-color: #03aa6c;
+}
+
+.mui-btn-success.mui-active:enabled,
+.mui-btn-success:enabled:active {
+	border: 1px solid #039d64;
+	background-color: #039d64;
+}

@@ -7,33 +7,8 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/common.css" rel="stylesheet" />
+		<link href="css/credits-popover.css" rel="stylesheet" />
 	</head>
-	<style>
-		html,
-		body,
-		.mui-content {
-			height: 100%;
-			background: rgba(0, 0, 0, .15);
-		}
-
-		.vertical-center {
-			width: 68%;
-			padding: 20px 18px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
-			background-color: #fff;
-		}
-
-		p {
-			font-size: 16px;
-			text-align: justify;
-
-		}
-
-		strong {
-			color: #03aa6c;
-		}
-	</style>
 
 	<body>
 		<div class="mui-content">
@@ -44,34 +19,7 @@
 		<script type="text/javascript" src="vendor/mui.min.js"></script>
 		<script type="text/javascript" src="vendor/zepto.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
-		<script>
-			(function(M, $, win) {
-				M.plusReady(function() {
-					var curPage = plus.webview.currentWebview();
-					win.addEventListener('getType', function(e) {
-						var type = $.trim(e.detail.type);
-						$('#type').text(type);
-						$('#credit').text(getTrainPlanCredit(type));
-						setTimeout(function() {
-							curPage.show();
-						}, 110);
-					});
-					M('body').on('tap', '.mui-content', function() {
-						curPage.hide();
-					});
-				});
-
-				function getTrainPlanCredit(type) {
-					var trainPlan = dataHandler.getData('trainPlan').content;
-					for (var i in trainPlan) {
-						var item = trainPlan[i];
-						if (item[0] == type) {
-							return item[1];
-						}
-					}
-				}
-			}(mui, Zepto, window));
-		</script>
+		<script type="text/javascript" src="js/credits-popover.js"></script>
 	</body>
 
 </html>

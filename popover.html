@@ -7,63 +7,20 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/common.css" rel="stylesheet" />
+		<link href="css/popover.css" rel="stylesheet" />
 	</head>
-	<style>
-		html,
-		body,
-		.mui-content {
-			height: 100%;
-			background-color: transparent;
-		}
-		
-		ul {
-			width: 170px;
-			margin-top: 44px;
-			margin-right: 10px;
-			-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .3), -1px -1px 2px rgba(0, 0, 0, .1);
-			box-shadow: 1px 1px 2px rgba(0, 0, 0, .3), -1px -1px 2px rgba(0, 0, 0, .1);
-			background-color: #03aa6c;
-			color: #fff;
-		}
-		
-		.mui-table-view-cell>a:not(.mui-btn).mui-active {
-			background-color: #039d64;
-		}
-		
-		.mui-table-view-cell:after {
-			left: 0;
-			background-color: #039d64;
-		}
-	</style>
 
 	<body>
 		<div class="mui-content">
 			<ul class="mui-pull-right">
-				<li class="mui-table-view-cell"><a href="">重新导入数据</a></li>
-				<li class="mui-table-view-cell"><a href="#">帮助与反馈</a></li>
+				<li class="mui-table-view-cell"><a href="login.html">重新导入数据</a></li>
+				<li class="mui-table-view-cell"><a href="feedback.html">帮助与反馈</a></li>
 			</ul>
 		</div>
 		<script type="text/javascript" src="vendor/mui.min.js"></script>
 		<script type="text/javascript" src="vendor/zepto.min.js"></script>
-		<script>
-			(function(M) {
-				M.plusReady(function() {
-					M('body').on('tap', '.mui-content', function(e) {
-						plus.webview.currentWebview().hide();
-						if (e.target.tagName.toLowerCase() == 'a') {
-							M.openWindow({
-								id: 'index',
-								url: 'index.html',
-								createNew: true,
-								waiting: {
-									autoShow: false
-								}
-							});
-						}
-					});
-				});
-			}(mui));
-		</script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/popover.js"></script>
 	</body>
 
 </html>

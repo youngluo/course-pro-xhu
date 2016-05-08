@@ -7,73 +7,8 @@
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/common.css" rel="stylesheet" />
+		<link href="css/timetable-detail.css" rel="stylesheet" />
 	</head>
-	<style>
-		.mui-bar-nav {
-			-webkit-box-shadow: none;
-			box-shadow: none;
-		}
-
-		.mui-bar-nav:after,
-		#course-detail p:after {
-			content: '';
-			position: absolute;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			height: 1px;
-			-webkit-transform: scaleY(.5);
-			transform: scaleY(.5);
-			background-color: #c8c7cc;
-		}
-
-		.mui-title,
-		a {
-			color: #03aa6c;
-		}
-
-		.mui-scroll-wrapper {
-			top: 44px;
-		}
-
-		#course-detail,
-		#course-detail p {
-			font-size: 15px;
-		}
-
-		#course-detail p {
-			position: relative;
-			padding: 5px 0;
-			color: #03aa6c;
-			/*border-bottom: solid 1px #03aa6c;*/
-		}
-
-		#course-detail p:after {
-			background-color: #03aa6c;
-		}
-
-		.course-detail-list {
-			display: -webkit-flex;
-			display: flex;
-			padding-bottom: 20px;
-		}
-
-		.course-detail-list ul {
-			flex: 10;
-		}
-
-		.course-detail-list ul:first-child {
-			flex: 2;
-		}
-
-		.course-detail-info {
-			color: #8f8f94
-		}
-
-		.course-detail-list li {
-			line-height: 3;
-		}
-	</style>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -109,9 +44,8 @@
 		<script type="text/javascript" src="vendor/mui.min.js"></script>
 		<script type="text/javascript" src="vendor/zepto.min.js"></script>
 		<script type="text/javascript" src="vendor/template.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/timetable-detail.js"></script>
-		<script>
-		</script>
 	</body>
 
 </html>

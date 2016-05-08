@@ -1,8 +1,11 @@
-(function(M, $) {
+(function(M, $, win) {
 
-	var oDate = new Date();
+	var oDate = new Date(),
+		day = oDate.getDay();
+
 	$('#month').text(oDate.getMonth() + 1 + '月');
-	$('#week li').eq(oDate.getDay()).addClass('active');
+	day = day > 0 ? day : 7;
+	$('#week li').eq(day).addClass('active');
 
 	M.plusReady(function() {
 		M.preload({
@@ -12,7 +15,7 @@
 
 		renderData();
 
-		M('#timetable').on('tap', '.course-active', function(){
+		M('#timetable').on('tap', '.course-active', function() {
 			var $this = $(this);
 			M.fire(plus.webview.getWebviewById('timetable-detail'), 'getCourse', {
 				course: $this.text()
@@ -21,18 +24,18 @@
 
 	});
 
-	window.addEventListener('update', function(e) {
+	win.addEventListener('update', function(e) {
 		if (e.detail.update) {
 			renderData();
 		}
 	});
 
 	function renderData() {
-		var timetable = dataHandler.getData('timetable');
+		var timetable = T.getData('timetable');
 
 		$('#timetable').html(template('timetable-tpl', {
 			data: timetable
 		}));
 	}
 
-}(mui, Zepto));
+}(mui, Zepto, window));

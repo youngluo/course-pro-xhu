@@ -9,7 +9,7 @@
 	M.plusReady(renderData);
 
 	function renderData() {
-		var failedCourse = dataHandler.getData('failedCourse');
+		var failedCourse = T.getData('failedCourse');
 
 		$('#failed-course').html(template('failed-course-tpl', {
 			data: failedCourse

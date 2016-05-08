@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/login.css" rel="stylesheet" />
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">登录教务系统</h1>
+		</header>
+		<div class="mui-content mui-content-padded">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>学号</label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入学号">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+				<div id='captcha' class="mui-input-row">
+					<label>验证码</label>
+					<input type="text" class="mui-input-clear mui-input" placeholder="请输入验证码">
+					<div>
+						<img src="" />
+						<div class="mui-loading">
+							<span class="mui-spinner"></span>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<form class="mui-input-group" id="rememberPassword">
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>记住学号和密码</label>
+					<input type="checkbox">
+				</div>
+			</form>
+			<div>
+				<button id='login' class="mui-btn mui-btn-block mui-btn-success">登录</button>
+			</div>
+		</div>
+
+		<script src="vendor/mui.min.js"></script>
+		<script src="vendor/zepto.min.js"></script>
+		<script src="js/login.js"></script>
+	</body>
+
+</html>

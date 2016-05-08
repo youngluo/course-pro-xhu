@@ -9,7 +9,7 @@
 	M.plusReady(renderData);
 
 	function renderData() {
-		var exam = dataHandler.getData('exam');
+		var exam = T.getData('exam');
 
 		$('#exam').html(template('exam-tpl', {
 			data: exam

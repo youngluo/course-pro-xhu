@@ -1,11 +1,12 @@
 (function(M, $) {
 
-	var DataHandler = (function() {
+	var Tool = (function() {
 
 		return {
-			getData: getData
+			getData: getData,
+			camelConversion: camelConversion,
+			detectNetwork: detectNetwork
 		};
-
 
 		function getData(name) {
 			var data = plus.storage.getItem(name);
@@ -14,9 +15,31 @@
 			}
 		}
 
+		function camelConversion(id) {
+			if (id.indexOf('-') > -1) {
+				return id
+					.replace(/-(.{1}?)/g, function(v) {
+						return v.toUpperCase();
+					})
+					.split('-')
+					.join('');
+			}
+
+			return id;
+		}
+
+		function detectNetwork() {
+			var networkInfo = plus.networkinfo;
+			if(networkInfo.getCurrentType() == networkInfo.CONNECTION_NONE){
+				M.toast("无法连接网络");
+				return false;
+			}
+			return true;
+		}
+
 	}());
 
-	window.dataHandler = DataHandler;
+	window.T = Tool;
 
 	M('.mui-scroll-wrapper').scroll();
 

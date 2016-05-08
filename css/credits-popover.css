@@ -1,0 +1,23 @@
+html,
+body,
+.mui-content {
+	height: 100%;
+	background: rgba(0, 0, 0, .15);
+}
+
+.vertical-center {
+	width: 68%;
+	padding: 20px 18px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+p {
+	font-size: 16px;
+	text-align: justify;
+}
+
+strong {
+	color: #03aa6c;
+}

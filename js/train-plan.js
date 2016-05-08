@@ -9,7 +9,7 @@
 	M.plusReady(renderData);
 
 	function renderData() {
-		var trainPlan = dataHandler.getData('trainPlan');
+		var trainPlan = T.getData('trainPlan');
 
 		$('#train-plan').html(template('train-plan-tpl', {
 			data: trainPlan.content

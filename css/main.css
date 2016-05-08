@@ -1,0 +1,38 @@
+.mui-table-view:after,
+.mui-table-view:before {
+	background-color: #fff;
+}
+
+.mui-table-view.mui-grid-view {
+	padding: 0;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell {
+	margin-right: 0;
+	background-color: #03aa6c;
+	color: #EFEFF4;
+}
+
+.mui-grid-view.mui-grid-9 {
+	border-top: 6px solid #fff;
+	border-left: 6px solid #fff;
+}
+
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+	padding-top: 0;
+	padding-bottom: 0;
+	border-right: 6px solid #fff;
+	border-bottom: 6px solid #fff;
+}
+
+.mui-grid-view.mui-grid-9 .mui-table-view-cell.mui-active {
+	background-color: #039d64;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	padding-left: 0;
+}
+
+.mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
+	color: #fff;
+}

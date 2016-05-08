@@ -103,7 +103,7 @@
 	},
 	"plus": {
 		"splashscreen": {
-			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": true,
 			"delay": "0"
 		},
@@ -236,7 +236,8 @@
 					"js/common.js",
 					"img/logo.png",
 					"vendor/zepto.min.js",
-					"vendor/mui.min.js"
+					"vendor/mui.min.js",
+					"css/main.css"
 				],
 				"refer": [
 					"timetable.html",
@@ -276,7 +277,8 @@
 					"timetable.html",
 					"vendor/zepto.min.js",
 					"vendor/mui.min.js",
-					"score.html"
+					"score.html",
+					"css/parent.css"
 				],
 				"refer": [
 					"popover.html",
@@ -308,10 +310,15 @@
 					"fonts/mui.ttf",
 					"vendor/mui.min.js",
 					"vendor/zepto.min.js",
-					"css/common.css"
+					"css/common.css",
+					"js/popover.js",
+					"css/popover.css",
+					"feedback.html",
+					"js/common.js"
 				],
 				"refer": [
-					"index.html"
+					"index.html",
+					"login.html"
 				],
 				"priority": 0
 			},
@@ -390,7 +397,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/timetable-detail.js",
-					"vendor/template.js"
+					"vendor/template.js",
+					"css/timetable-detail.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -400,7 +408,10 @@
 					"js/failed-course.js",
 					"js/common.js",
 					"css/common.css",
-					"vendor/template.js"
+					"vendor/template.js",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -410,7 +421,53 @@
 					"js/trainPlan.js",
 					"js/common.js",
 					"vendor/template.js",
-					"css/common.css"
+					"css/common.css",
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/mui.min.css",
+					"js/train-plan.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"credits-popover.html": {
+				"resources": [
+					"css/credits-popover.css",
+					"js/credits-popover.js",
+					"vendor/zepto.min.js",
+					"js/common.js",
+					"vendor/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [
+					"vendor/zepto.min.js",
+					"vendor/mui.min.js",
+					"css/login.css",
+					"fonts/mui.ttf",
+					"js/login.js",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"main.html"
+				],
+				"priority": 0
+			},
+			"feedback.html": {
+				"resources": [
+					"vendor/zepto.min.js",
+					"css/feedback.css",
+					"js/common.js",
+					"js/feedback.js",
+					"popover.html",
+					"vendor/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0

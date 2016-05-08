@@ -41,17 +41,17 @@
 	});
 
 	function renderData() {
-		var credits = dataHandler.getData('credits'),
-			trainPlan = dataHandler.getData('trainPlan'),
+		var credits = T.getData('credits'),
+			trainPlan = T.getData('trainPlan'),
 			creditsContent = credits.content;
 
 		$.each(trainPlan.content, function(index, item) {
 			var credit = creditsContent[item[0]] - item[1];
 
 			if (credit > 0) {
-				creditsContent[item[0]] += '<strong class="beyond">+' + credit + '</strong>';
+				creditsContent[item[0]] += '<span class="mui-badge mui-badge-warning">+' + credit + '</span>';
 			} else if (credit < 0) {
-				creditsContent[item[0]] += '<strong class="insufficient">' + credit + '</strong>';
+				creditsContent[item[0]] += '<span class="mui-badge mui-badge-danger">' + credit + '</span>';
 			}
 
 		});

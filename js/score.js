@@ -9,7 +9,7 @@
 	M.plusReady(renderData);
 
 	function renderData() {
-		var score = dataHandler.getData('score');
+		var score = T.getData('score');
 
 		$('#score').html(template('score-tpl', {
 			data: score
