@@ -467,7 +467,8 @@
 					"vendor/mui.min.js",
 					"css/common.css",
 					"css/mui.min.css",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"vendor/lodash.custom.min.js"
 				],
 				"refer": [],
 				"priority": 0

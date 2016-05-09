@@ -16,10 +16,14 @@
 	background-color: #c8c7cc;
 }
 
-.mui-bar .mui-btn-link,
+.mui-bar .mui-btn-link.active,
 .mui-title,
 a {
 	color: #03aa6c;
+}
+
+.mui-bar .mui-btn-link{
+	color: #C8C7CC;
 }
 
 h5 {

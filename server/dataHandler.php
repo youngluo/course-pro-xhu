@@ -136,9 +136,18 @@ class DataHandler {
 	function timetable() {
 
 		$result = $this -> dataProvider -> get_timetable($this -> user, $this -> name, '2014-2015', '1');
-
+		
+		//课程表
 		preg_match_all('/<table id="Table1"[\w\W]*?>([\w\W]*?)<\/table>/', $result, $out);
 		$timetable = $out[0][0];
+		
+		//学院
+		preg_match_all('/<span id="Label7">([\w\W]*?)<\/span>/', $result, $out);
+		$academy = $out[0][0];
+		
+		//专业
+		preg_match_all('/<span id="Label8">([\w\W]*?)<\/span>/', $result, $out);
+		$major = $out[0][0];
 
 		preg_match_all('/<td [\w\W]*?>([\w\W]*?)<\/td>/', $timetable, $out);
 		$td = $out[1];
@@ -154,7 +163,11 @@ class DataHandler {
 
 		$td = array_values($td);
 
-		return $this -> timetable_formatter($td);
+		return array(
+			'content' => $this -> timetable_formatter($td),
+			'academy' => $academy,
+			'major' => $major
+		);
 
 	}
 
