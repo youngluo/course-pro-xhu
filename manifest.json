@@ -103,7 +103,7 @@
 	},
 	"plus": {
 		"splashscreen": {
-			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+			"autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": true,
 			"delay": "0"
 		},
@@ -237,7 +237,8 @@
 					"img/logo.png",
 					"vendor/zepto.min.js",
 					"vendor/mui.min.js",
-					"css/main.css"
+					"css/main.css",
+					"fonts/iconfont.ttf"
 				],
 				"refer": [
 					"timetable.html",
