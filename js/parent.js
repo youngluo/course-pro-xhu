@@ -14,8 +14,6 @@
 			id: 'popover',
 			url: 'popover.html',
 			styles: {
-				width: '100%',
-				heigh: '100%',
 				background: 'transparent'
 			}
 		});

@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	function Login() {
-		this.host = 'http://192.168.0.148:9096/CoursePro_xhu/server/';
+		this.host = 'http://192.168.0.147:9096/CoursePro_xhu/server/';
 		this.init();
 	};
 
@@ -39,6 +39,7 @@
 		captcha.hide();
 		$('#captcha input').val('');
 		loading.show();
+		
 		M.ajax(self.host, {
 			timeout: '20000',
 			success: function(res) {

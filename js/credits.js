@@ -19,8 +19,6 @@
 			id: 'credits-popover',
 			url: 'credits-popover.html',
 			styles: {
-				width: '100%',
-				heigh: '100%',
 				background: 'transparent'
 			}
 		});

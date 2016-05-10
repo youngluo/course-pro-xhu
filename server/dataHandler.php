@@ -143,11 +143,11 @@ class DataHandler {
 		
 		//学院
 		preg_match_all('/<span id="Label7">([\w\W]*?)<\/span>/', $result, $out);
-		$academy = $out[0][0];
+		$academy = explode('：', $out[1][0])[1];
 		
 		//专业
 		preg_match_all('/<span id="Label8">([\w\W]*?)<\/span>/', $result, $out);
-		$major = $out[0][0];
+		$major = explode('：', $out[1][0])[1];
 
 		preg_match_all('/<td [\w\W]*?>([\w\W]*?)<\/td>/', $timetable, $out);
 		$td = $out[1];
@@ -307,9 +307,13 @@ class DataHandler {
 
 		$this -> user = $_GET['user'];
 		$this -> name = $_GET['name'];
+		
+		$timetable = $this -> timetable();
 
 		$result = array(
-			'timetable' => $this -> timetable(),
+			'academy' => $timetable['academy'],
+			'major' => $timetable['major'],
+			'timetable' => $timetable['content'],
 			'score' => $this -> score(),
 			'failedCourse' => $this -> failed_course(),
 			'exam' => $this -> exam(),

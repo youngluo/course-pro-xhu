@@ -32,7 +32,6 @@
 
 	function renderData() {
 		var timetable = T.getData('timetable');
-
 		$('#timetable').html(template('timetable-tpl', {
 			data: timetable
 		}));
