@@ -29,10 +29,7 @@
 		}
 
 		function detectNetwork() {
-			var networkInfo = plus.networkinfo;
-			console.log(networkInfo);
-			
-			if(networkInfo.getCurrentType() == networkInfo.CONNECTION_NONE){
+			if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){
 				M.toast("无法连接网络");
 				return false;
 			}

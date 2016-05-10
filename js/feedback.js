@@ -1,7 +1,7 @@
 (function(M, $, _) {
 
 	M.plusReady(function() {
-		T.detectNetwork();
+		//T.detectNetwork();
 		M('.mui-bar').on('tap', '#send-feedback-info', _.debounce(sendFeedbackInfo, 800));
 	});
 
@@ -37,13 +37,12 @@
 	var ref = null;
 
 	function sendFeedbackInfo() {
-		console.log('-------------')
-		var isNetwork = T.detectNetwork(),
+		var //isNetwork = T.detectNetwork(),
 			feedbackInfo = $.trim(feedbackInput.val());
 
-		if (!isNetwork) {
+		/*if (!isNetwork) {
 			return;
-		}
+		}*/
 		
 		if (!ref) {
 			ref = new Wilddog('https://course-xhu.wilddogio.com/feedback');

@@ -15,7 +15,9 @@
 				plus.navigator.closeSplashscreen();
 			});
 		} else {
-			plus.navigator.closeSplashscreen();
+			setTimeout(function() {
+				plus.navigator.closeSplashscreen();
+			}, 2000);
 		}
 
 		M.preload({
