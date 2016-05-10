@@ -7,7 +7,17 @@
 	});
 
 	M.plusReady(function() {
-		//plus.webview.currentWebview().hide();
+		if (!plus.storage.getItem('isLogin')) {
+			plus.webview.open('login.html', 'login', {
+				top: 0,
+				bottom: 0
+			}, 'none', 0, function() {
+				plus.navigator.closeSplashscreen();
+			});
+		} else {
+			plus.navigator.closeSplashscreen();
+		}
+
 		M.preload({
 			id: 'parent',
 			url: 'parent.html',

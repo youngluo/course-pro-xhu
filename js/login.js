@@ -39,7 +39,7 @@
 		captcha.hide();
 		$('#captcha input').val('');
 		loading.show();
-		
+
 		M.ajax(self.host, {
 			timeout: '20000',
 			success: function(res) {
@@ -132,9 +132,15 @@
 			});
 		}
 
+		//标志是否是第一次登录
+		if (!plus.storage.getItem('isLogin')) {
+			plus.storage.setItem('isLogin', 'true');
+		}
+
 		M.openWindow({
 			url: 'main.html',
 			id: 'main',
+			createNew: true,
 			waiting: {
 				autoShow: false
 			}
@@ -152,7 +158,7 @@
 
 	M.plusReady(function() {
 		var currentWebview = plus.webview.currentWebview();
-		if(currentWebview.showBack){
+		if (currentWebview.showBack) {
 			$('#back').show();
 		}
 

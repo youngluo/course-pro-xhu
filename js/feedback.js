@@ -37,6 +37,7 @@
 	var ref = null;
 
 	function sendFeedbackInfo() {
+		console.log('-------------')
 		var isNetwork = T.detectNetwork(),
 			feedbackInfo = $.trim(feedbackInput.val());
 

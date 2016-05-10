@@ -24,18 +24,6 @@
 		});
 
 		renderData();
-
-		var creditsPopover = null;
-		M('#credits').on('longtap', '.course-list', function() {
-			var $this = $(this);
-			if (!creditsPopover) {
-				creditsPopover = plus.webview.getWebviewById('credits-popover');
-			}
-
-			M.fire(creditsPopover, 'getType', {
-				type: $this.find('li:first-child').text()
-			});
-		});
 	});
 
 	function renderData() {
@@ -59,6 +47,18 @@
 		}));
 
 		$('#cur-credit').text(credits.total);
+		
+		var creditsPopover = null;
+		M('#credits').on('longtap', '.course-list', function() {
+			var $this = $(this);
+			if (!creditsPopover) {
+				creditsPopover = plus.webview.getWebviewById('credits-popover');
+			}
+
+			M.fire(creditsPopover, 'getType', {
+				type: $this.find('li:first-child').text()
+			});
+		});
 	}
 
 }(mui, Zepto));
