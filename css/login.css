@@ -53,10 +53,6 @@ a {
 	height: 100%;
 }
 
-.mui-loading {
-	display: none;
-}
-
 .mui-loading .mui-spinner {
 	margin-top: 8px;
 }

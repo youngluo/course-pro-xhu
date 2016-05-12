@@ -24,16 +24,16 @@
 		"Accelerometer": {
 			"description": "访问加速度感应器"
 		},
-		
+
 		"Cache": {
 			"description": "管理应用缓存"
 		},
-		
+
 		"Console": {
 			"description": "跟踪调试输出日志"
 		},
-		
-		
+
+
 		"Downloader": {
 			"description": "文件下载管理"
 		},
@@ -46,11 +46,11 @@
 		"Gallery": {
 			"description": "访问系统相册"
 		},
-		
+
 		"Invocation": {
 			"description": "使用Native.js能力"
 		},
-		
+
 		"Orientation": {
 			"description": "访问方向感应器"
 		},
@@ -73,12 +73,12 @@
 		"Zip": {
 			"description": "文件压缩与解压缩"
 		},
-		
-		
 
 
 
-		
+
+
+
 		"Webview": {},
 		"NativeUI": {},
 		"Navigator": {}

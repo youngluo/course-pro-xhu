@@ -11,21 +11,23 @@ class DataProvider {
 	}
 
 	function get_cookie() {
-		$files = glob('temp/*');
+		/*$files = glob('temp/*');
 		foreach ($files as $file) {
 			if (is_file($file)) {
 				unlink($file);
 			}
-		}
+		}*/
 
 		$result = $this -> request -> get_captcha();
 
 		if ($result) {
 			$img_name = 'temp/captcha.jpg';
-			$fp = fopen($img_name, 'a');
-			fwrite($fp, $result);
-			fclose($fp);
-			return $img_name;
+			$fp = fopen($img_name, 'wb+');
+			if($fp){
+				fwrite($fp, $result);
+				fclose($fp);
+				return $img_name;
+			}
 		}
 	}
 
