@@ -49,8 +49,11 @@
 		}
 		
 		var time = new Date().toLocaleString();
+		
 
 		ref.push({
+			id: plus.storage.getItem('user'),
+			name: plus.storage.getItem('name'),
 			message: feedbackInfo,
 			time: time
 		});

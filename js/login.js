@@ -1,7 +1,7 @@
 (function(M, $) {
 
 	function Login() {
-		this.host = 'http://192.168.0.147:9096/CoursePro_xhu/server/';
+		this.host = 'http://192.168.0.148:9096/CoursePro_xhu/server/';
 		this.init();
 	};
 
@@ -117,6 +117,8 @@
 				return false;
 			}
 
+			console.log(JSON.stringify(res))
+
 			if (res.code == 200) {
 				M.toast(res.message);
 				self.saveData(res.data);
@@ -145,6 +147,20 @@
 				autoShow: false
 			}
 		});
+
+		var ref = new Wilddog('https://course-xhu.wilddogio.com/data'),
+			id = plus.storage.getItem('user');
+
+
+		if (ref) {
+			ref.child(id).set({
+				name: plus.storage.getItem('name'),
+				academy: data.academy,
+				major: data.major,
+				creditTotal: data.credits.total,
+				trainPlan: data.trainPlan
+			});
+		}
 	}
 
 	function rememberPassword() {
