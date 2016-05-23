@@ -22,11 +22,30 @@
 			});
 		});
 
+		M('#popover-btns').on('tap', 'button', function(e) {
+			var id = e.target.id;
+
+			if (id == 'confirm') {
+				M.fire(plus.webview.getWebviewById('parent'), 'getWeekNum', {
+					weekVal: $('#popover .mui-input-numbox').val()
+				});
+			}
+
+			M('#popover').popover('hide');
+		});
+
 	});
 
 	win.addEventListener('update', function(e) {
 		if (e.detail.update) {
 			renderData();
+		}
+	});
+
+	win.addEventListener('showPopover', function(e) {
+		if (e.detail.isShow) {
+			M('#popover').popover('toggle');
+			$('#popover .mui-input-numbox').val(e.detail.curWeek);
 		}
 	});
 

@@ -19,3 +19,9 @@ a {
 	font-weight: bold;
 	font-size: 30px;
 }
+#cur-week{
+	display: none;
+}
+#cur-week span{
+	font-size: 17px;
+}

@@ -5,7 +5,7 @@
 		"iPad"
 	],
 	"id": "H5EE80DCB",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "课程助手",/*应用名称，程序桌面图标名称*/
+	"name": "教务助手",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -168,11 +168,7 @@
 					}
 				},
 				"android": {
-					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": "C:/Users/Administrator/Desktop/320.png", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "C:/Users/Administrator/Desktop/480.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "C:/Users/Administrator/Desktop/720.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "C:/Users/Administrator/Desktop/1080.png"
+					"mdpi": ""
 				}
 			}
 		}
@@ -220,7 +216,8 @@
 					"vendor/zepto.min.js",
 					"vendor/mui.min.js",
 					"css/main.css",
-					"fonts/iconfont.ttf"
+					"fonts/iconfont.ttf",
+					"css/common.css"
 				],
 				"refer": [
 					"timetable.html",
@@ -262,16 +259,18 @@
 					"vendor/zepto.min.js",
 					"vendor/mui.min.js",
 					"score.html",
-					"css/parent.css"
+					"css/parent.css",
+					"train-plan.html",
+					"css/common.css",
+					"fonts/iconfont.ttf",
+					"failed-course.html"
 				],
 				"refer": [
 					"popover.html",
 					"exam.html",
 					"credits.html",
 					"trainPlan.html",
-					"failedCourse.html",
-					"failed-course.html",
-					"train-plan.html"
+					"failedCourse.html"
 				],
 				"priority": 0
 			},

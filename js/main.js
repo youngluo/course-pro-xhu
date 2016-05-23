@@ -34,7 +34,7 @@
 		M('#main').on('tap', 'li', function(e) {
 			var self = this,
 				title = $(this).find('div').text();
-
+				
 			if (!parentPage) {
 				parentPage = plus.webview.getWebviewById('parent');
 			}

@@ -45,6 +45,7 @@
 			success: function(res) {
 				if (res) {
 					loading.hide();
+					console.log(self.host + res + '?' + (+new Date()))
 					captcha.attr('src', self.host + res + '?' + (+new Date())).show();
 				}
 			},

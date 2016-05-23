@@ -282,7 +282,7 @@ class DataHandler {
 
 			if ($item[2] >= 60) {
 				$type = $item[0];
-
+				//手动校正，以配合培养计划信息
 				if ($type == '发展基础课程群选修') {
 					$type = '发展基础课程群必修';
 				}
