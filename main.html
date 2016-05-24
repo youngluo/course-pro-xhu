@@ -50,8 +50,35 @@
 				</a>
 			</li>
 		</ul>
+		<div id="popover" class="mui-popover">
+			<script id="exam-hint-tpl" type="text/html">
+				<h3>近期将有{{count}}门考试</h3>
+				<ul id="exam-list">
+					{{each dataList as examList}}
+					<li>
+						<p>{{examList.time}}在{{examList.place}}将进行<strong>{{examList.courseName}}</strong>考试！</p>
+					</li>
+					{{/each}}
+				</ul>
+				<ul id="exam-btns">
+					<li>
+						<form class="mui-input-group">
+							<div class="mui-input-row mui-checkbox mui-left">
+								<label>不再提示</label>
+								<input type="checkbox">
+							</div>
+						</form>
+					</li>
+					<li>
+						<button>OK</button>
+					</li>
+				</ul>
+			</script>
+		</div>
 		<script src="vendor/mui.min.js"></script>
 		<script src="vendor/zepto.min.js"></script>
+		<script src="vendor/template.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 

@@ -217,7 +217,8 @@
 					"vendor/mui.min.js",
 					"css/main.css",
 					"fonts/iconfont.ttf",
-					"css/common.css"
+					"css/common.css",
+					"vendor/template.js"
 				],
 				"refer": [
 					"timetable.html",

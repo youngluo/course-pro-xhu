@@ -36,3 +36,71 @@
 .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body {
 	color: #fff;
 }
+
+#popover {
+	width: 300px;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	padding: 18px 15px;
+	-webkit-transition: opacity .1s;
+	transition: opacity .1s;
+}
+
+#popover h3 {
+	margin-bottom: 12px;
+	font-size: 18px;
+	color: #05935e;
+}
+
+#popover p {
+	margin-bottom: 0;
+	font-size: 15px;
+}
+
+#exam-list li {
+	margin-top: 10px;
+}
+
+#exam-btns li:last-child {
+	text-align: right;
+}
+
+#exam-btns button {
+	color: #09ba78;
+}
+
+#exam-btns .mui-input-group label {
+	padding-left: 25px;
+	color: #039D64;
+}
+
+.mui-checkbox.mui-left input[type=checkbox] {
+	left: 0;
+}
+
+#exam-btns .mui-input-row {
+	font-size: 14px;
+}
+
+.mui-checkbox input[type=checkbox] {
+	top: 8px;
+	width: 20px;
+	height: 20px;
+}
+
+.mui-checkbox input[type=checkbox]:before {
+	font-size: 20px;
+}
+
+.mui-checkbox input[type=checkbox]:checked:before {
+	color: #03aa6c;
+}
+
+.mui-input-group,
+.mui-input-group:before,
+.mui-input-group .mui-input-row:after,
+.mui-input-group:after {
+	background-color: transparent;
+}
