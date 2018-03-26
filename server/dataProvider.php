@@ -2,81 +2,97 @@
 
 require_once 'request.php';
 
-class DataProvider {
+class DataProvider
+{
+    private $request = null;
 
-	private $request = null;
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
 
-	function __construct() {
-		$this -> request = new Request();
-	}
+    public function get_cookie()
+    {
+        /*$files = glob('temp/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }*/
 
-	function get_cookie() {
-		/*$files = glob('temp/*');
-		foreach ($files as $file) {
-			if (is_file($file)) {
-				unlink($file);
-			}
-		}*/
+        $result = $this->request->get_captcha();
 
-		$result = $this -> request -> get_captcha();
+        if ($result) {
+            $img_name = 'temp/captcha.jpg';
+            $fp = fopen($img_name, 'wb+');
+            if ($fp) {
+                fwrite($fp, $result);
+                fclose($fp);
 
-		if ($result) {
-			$img_name = 'temp/captcha.jpg';
-			$fp = fopen($img_name, 'wb+');
-			if($fp){
-				fwrite($fp, $result);
-				fclose($fp);
-				return $img_name;
-			}
-		}
-	}
+                return $img_name;
+            }
+        }
+    }
 
-	function login($user, $psw, $captcha) {
-		$post_data = array("__VIEWSTATE" => $this -> request -> get_viewstate(), "txtUserName" => $user, "TextBox2" => $psw, "txtSecretCode" => $captcha, "RadioButtonList1" => iconv('utf-8', 'gb2312', '学生'), "Button1" => '', "lbLanguage" => '', "hidPdrs" => '', "hidsc" => '');
-		return $this -> request -> curl('', $post_data);
-	}
+    public function login($user, $psw, $captcha)
+    {
+        $post_data = array('__VIEWSTATE' => $this->request->get_viewstate(), 'txtUserName' => $user, 'TextBox2' => $psw, 'txtSecretCode' => $captcha, 'RadioButtonList1' => iconv('utf-8', 'gb2312', '学生'), 'Button1' => '', 'lbLanguage' => '', 'hidPdrs' => '', 'hidsc' => '');
 
-	function get_timetable($user, $name, $year = '', $term = '') {
-		$post_data = '';
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/xskbcx.aspx?gnmkdm=N121603&xm=' . $name . '&xh=' . $user;
-		if ($year && $term) {
-			$post_data = array('__EVENTTARGET' => 'xnd', '__EVENTARGUMENT' => '', 'xnd' => $year, 'xqd' => $term, '__VIEWSTATE' => $this -> request -> get_viewstate($url));
-		}
-		return $this -> request -> curl($url, $post_data);
-	}
+        return $this->request->curl('', $post_data);
+    }
 
-	function get_score($user, $name) {
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
-		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zcj' => '历年成绩');
-		return $this -> request -> curl($url, $post_data);
-	}
+    public function get_timetable($user, $name, $year = '', $term = '')
+    {
+        $post_data = '';
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/xskbcx.aspx?gnmkdm=N121603&xm='.$name.'&xh='.$user;
+        if ($year && $term) {
+            $post_data = array('__EVENTTARGET' => 'xnd', '__EVENTARGUMENT' => '', 'xnd' => $year, 'xqd' => $term, '__VIEWSTATE' => $this->request->get_viewstate($url));
+        }
 
-	function get_failed_course($user, $name) {
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
-		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'Button2' => '未通过成绩');
-		return $this -> request -> curl($url, $post_data);
-	}
+        return $this->request->curl($url, $post_data);
+    }
 
-	function get_exam($user, $name) {
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/xskscx.aspx?gnmkdm=N121604&xm=' . $name . '&xh=' . $user;
-		return $this -> request -> curl($url);
-	}
+    public function get_score($user, $name)
+    {
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm='.$name.'&xh='.$user;
+        $post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this->request->get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zcj' => '历年成绩');
 
-	function get_train_plan($user, $name) {
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/pyjh.aspx?gnmkdm=N121607&xm=' . $name . '&xh=' . $user;
-		return $this -> request -> curl($url);
-	}
+        return $this->request->curl($url, $post_data);
+    }
 
-	function get_credits($user, $name) {
-		$name = urlencode(iconv('utf-8', 'gb2312', $name));
-		$url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm=' . $name . '&xh=' . $user;
-		$post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this -> request -> get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zg' => '课程最高成绩');
-		return $this -> request -> curl($url, $post_data);
-	}
+    public function get_failed_course($user, $name)
+    {
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm='.$name.'&xh='.$user;
+        $post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this->request->get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'Button2' => '未通过成绩');
 
+        return $this->request->curl($url, $post_data);
+    }
+
+    public function get_exam($user, $name)
+    {
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/xskscx.aspx?gnmkdm=N121604&xm='.$name.'&xh='.$user;
+
+        return $this->request->curl($url);
+    }
+
+    public function get_train_plan($user, $name)
+    {
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/pyjh.aspx?gnmkdm=N121607&xm='.$name.'&xh='.$user;
+
+        return $this->request->curl($url);
+    }
+
+    public function get_credits($user, $name)
+    {
+        $name = urlencode(iconv('utf-8', 'gb2312', $name));
+        $url = 'http://jwc.xhu.edu.cn/xscjcx.aspx?gnmkdm=N121605&xm='.$name.'&xh='.$user;
+        $post_data = array('__EVENTTARGET' => '', '__EVENTARGUMENT' => '', 'hidLanguage' => '', 'ddlXN' => '', '__VIEWSTATE' => $this->request->get_viewstate($url), 'ddlXQ' => '', 'ddl_kcxz' => '', 'btn_zg' => '课程最高成绩');
+
+        return $this->request->curl($url, $post_data);
+    }
 }

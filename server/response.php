@@ -1,22 +1,20 @@
 <?php
-class Response {
 
-	public static function json($code, $message = '', $data = array()) {
-			
-		if(!is_numeric($code)) {
-			return '';
-		}
+class Response
+{
+    public static function json($code, $message = '', $data = array())
+    {
+        if (!is_numeric($code)) {
+            return '';
+        }
 
-		$result = array(
-			'code' => $code,
-			'message' => $message,
-			'data' => $data
-		);
+        $result = array(
+            'code' => $code,
+            'message' => $message,
+            'data' => $data,
+        );
 
-		echo json_encode($result, JSON_UNESCAPED_UNICODE);
-		exit;
-		
-	}
-
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        exit;
+    }
 }
-?>

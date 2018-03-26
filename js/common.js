@@ -1,45 +1,41 @@
 (function(M, $) {
+  var Tool = (function() {
+    return {
+      getData: getData,
+      camelConversion: camelConversion,
+      detectNetwork: detectNetwork
+    };
 
-	var Tool = (function() {
+    function getData(name) {
+      var data = plus.storage.getItem(name);
+      if (data) {
+        return JSON.parse(data);
+      }
+    }
 
-		return {
-			getData: getData,
-			camelConversion: camelConversion,
-			detectNetwork: detectNetwork
-		};
+    function camelConversion(id) {
+      if (id.indexOf('-') > -1) {
+        return id
+          .replace(/-(.{1}?)/g, function(v) {
+            return v.toUpperCase();
+          })
+          .split('-')
+          .join('');
+      }
 
-		function getData(name) {
-			var data = plus.storage.getItem(name);
-			if (data) {
-				return JSON.parse(data);
-			}
-		}
+      return id;
+    }
 
-		function camelConversion(id) {
-			if (id.indexOf('-') > -1) {
-				return id
-					.replace(/-(.{1}?)/g, function(v) {
-						return v.toUpperCase();
-					})
-					.split('-')
-					.join('');
-			}
+    function detectNetwork() {
+      if (plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE) {
+        M.toast('无法连接网络');
+        return false;
+      }
+      return true;
+    }
+  })();
 
-			return id;
-		}
+  window.T = Tool;
 
-		function detectNetwork() {
-			if(plus.networkinfo.getCurrentType() == plus.networkinfo.CONNECTION_NONE){
-				M.toast("无法连接网络");
-				return false;
-			}
-			return true;
-		}
-
-	}());
-
-	window.T = Tool;
-
-	M('.mui-scroll-wrapper').scroll();
-
-}(mui, Zepto));
+  M('.mui-scroll-wrapper').scroll();
+})(mui, Zepto);

@@ -1,65 +1,62 @@
 (function(M, $, _) {
+  M.plusReady(function() {
+    //T.detectNetwork();
+    M('.mui-bar').on('tap', '#send-feedback-info', _.debounce(sendFeedbackInfo, 800));
+  });
 
-	M.plusReady(function() {
-		//T.detectNetwork();
-		M('.mui-bar').on('tap', '#send-feedback-info', _.debounce(sendFeedbackInfo, 800));
-	});
+  var limitLength = 120,
+    hint = $('#feedback p'),
+    num = hint.find('span'),
+    isShow = false,
+    feedbackInput = $('#feedback-info'),
+    sendFeedbackBtn = $('#send-feedback-info');
 
-	var limitLength = 120,
-		hint = $('#feedback p'),
-		num = hint.find('span'),
-		isShow = false,
-		feedbackInput = $('#feedback-info'),
-		sendFeedbackBtn = $('#send-feedback-info');
+  feedbackInput.on('input', function() {
+    if (!isShow) {
+      hint.show();
+      isShow = true;
+    }
 
-	feedbackInput.on('input', function() {
-		if (!isShow) {
-			hint.show();
-			isShow = true;
-		}
+    var feedbackInfo = $.trim($(this).val()),
+      counts = limitLength - feedbackInfo.length;
 
-		var feedbackInfo = $.trim($(this).val()),
-			counts = limitLength - feedbackInfo.length;
+    if (counts < limitLength) {
+      sendFeedbackBtn.removeAttr('disabled').addClass('active');
+    } else {
+      sendFeedbackBtn.attr('disabled', true).removeClass('active');
+    }
 
-		if (counts < limitLength) {
-			sendFeedbackBtn.removeAttr('disabled').addClass('active');
-		} else {
-			sendFeedbackBtn.attr('disabled', true).removeClass('active');
-		}
+    if (counts >= 0) {
+      num.text(counts);
+    } else {
+      $(this).val(feedbackInfo.substr(0, 120));
+    }
+  });
 
-		if (counts >= 0) {
-			num.text(counts);
-		} else {
-			$(this).val(feedbackInfo.substr(0, 120));
-		}
-	});
+  var ref = null;
 
-	var ref = null;
+  function sendFeedbackInfo() {
+    var //isNetwork = T.detectNetwork(),
+    feedbackInfo = $.trim(feedbackInput.val());
 
-	function sendFeedbackInfo() {
-		var //isNetwork = T.detectNetwork(),
-			feedbackInfo = $.trim(feedbackInput.val());
-
-		/*if (!isNetwork) {
+    /*if (!isNetwork) {
 			return;
 		}*/
-		
-		if (!ref) {
-			ref = new Wilddog('https://course-xhu.wilddogio.com/feedback');
-		}
-		
-		var time = new Date().toLocaleString();
-		
 
-		ref.push({
-			id: plus.storage.getItem('user'),
-			name: plus.storage.getItem('name'),
-			message: feedbackInfo,
-			time: time
-		});
-		
-		M.toast('提交成功');
-		feedbackInput.val('');
-	}
+    if (!ref) {
+      ref = new Wilddog('https://course-xhu.wilddogio.com/feedback');
+    }
 
-}(mui, Zepto, _));
+    var time = new Date().toLocaleString();
+
+    ref.push({
+      id: plus.storage.getItem('user'),
+      name: plus.storage.getItem('name'),
+      message: feedbackInfo,
+      time: time
+    });
+
+    M.toast('提交成功');
+    feedbackInput.val('');
+  }
+})(mui, Zepto, _);

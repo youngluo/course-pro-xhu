@@ -1,27 +1,29 @@
 .mui-bar {
-	background-color: #03aa6c;
+  background-color: #03aa6c;
 }
 
 .mui-title,
 a {
-	color: #fff;
+  color: #fff;
 }
 
 .mui-bar-nav {
-	top: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+  top: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .mui-bar .mui-icon.mui-icon-plusempty {
-	padding-top: 7px;
-	padding-bottom: 7px;
-	font-weight: bold;
-	font-size: 30px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-weight: bold;
+  font-size: 30px;
 }
-#cur-week{
-	display: none;
+
+#cur-week {
+  display: none;
 }
-#cur-week span{
-	font-size: 17px;
+
+#cur-week span {
+  font-size: 17px;
 }

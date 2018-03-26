@@ -1,19 +1,19 @@
 (function(M, $) {
+  window.addEventListener('update', function(e) {
+    if (e.detail.update) {
+      renderData();
+    }
+  });
 
-	window.addEventListener('update', function(e) {
-		if (e.detail.update) {
-			renderData();
-		}
-	});
+  M.plusReady(renderData);
 
-	M.plusReady(renderData);
+  function renderData() {
+    var exam = T.getData('exam');
 
-	function renderData() {
-		var exam = T.getData('exam');
-
-		$('#exam').html(template('exam-tpl', {
-			data: exam
-		}));
-	}
-
-}(mui, Zepto));
+    $('#exam').html(
+      template('exam-tpl', {
+        data: exam
+      })
+    );
+  }
+})(mui, Zepto);
